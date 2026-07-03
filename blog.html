@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Pubblicazioni | Francesco Marzullo</title>
+    <!-- Aggiunta Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><path fill=%22%232563eb%22 d=%22M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 329.4 329.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 384c17.7 0 32-14.3 32-32s-14.3-32-32-32L32 320c-17.7 0-32 14.3-32 32s14.3 32 32 32l128 0z%22/></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Semplice ombra personalizzata per le card */
+        .card-hover {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased bg-slate-50 flex flex-col min-h-screen">
+
+    <!-- Navbar Fissa (adattata per tornare alla Home) -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md z-50 border-b border-slate-200 top-0">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold tracking-tight text-slate-900 hover:text-primary-600 transition-colors">
+                <i class="fa-solid fa-terminal text-primary-600 mr-2"></i>Francesco Marzullo
+            </a>
+            
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex gap-6 text-sm font-medium text-slate-600">
+                <a href="index.html#about" class="lang-text hover:text-primary-600 transition-colors" data-it="Home" data-en="Home">Home</a>
+                <a href="index.html#skills" class="lang-text hover:text-primary-600 transition-colors" data-it="Competenze" data-en="Skills">Competenze</a>
+                <a href="index.html#experience" class="lang-text hover:text-primary-600 transition-colors" data-it="Esperienza" data-en="Experience">Esperienza</a>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-4">
+                <!-- Language Switcher -->
+                <div class="flex items-center bg-slate-100 rounded-lg p-1 text-xs font-bold text-slate-500 cursor-pointer shadow-inner">
+                    <button id="lang-it" class="px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all" onclick="setLanguage('it')">IT</button>
+                    <button id="lang-en" class="px-3 py-1.5 rounded-md hover:text-slate-900 transition-all" onclick="setLanguage('en')">EN</button>
+                </div>
+            </div>
+            
+            <!-- Bottone Mobile (solo visivo in questa demo) -->
+            <button class="md:hidden text-slate-600 text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow pt-32 pb-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8">
+            
+            <!-- Header Blog -->
+            <div class="mb-12 border-b border-slate-200 pb-8">
+                <a href="index.html" class="inline-flex items-center gap-2 text-primary-600 text-sm font-medium hover:text-primary-700 mb-6 transition-colors">
+                    <i class="fa-solid fa-arrow-left"></i> <span class="lang-text" data-it="Torna al Portfolio" data-en="Back to Portfolio">Torna al Portfolio</span>
+                </a>
+                <h1 class="text-4xl font-bold text-slate-900 flex items-center gap-3">
+                    <i class="fa-solid fa-book-open text-primary-500"></i> 
+                    <span class="lang-text" data-it="Archivio Pubblicazioni" data-en="Publications Archive">Archivio Pubblicazioni</span>
+                </h1>
+                <p class="lang-text text-lg text-slate-500 mt-4 max-w-2xl" data-it="La raccolta completa dei miei editoriali, riflessioni tecnologiche e articoli legati al territorio e al worldbuilding." data-en="The complete collection of my editorials, technological reflections, and articles related to the territory and worldbuilding.">
+                    La raccolta completa dei miei editoriali, riflessioni tecnologiche e articoli legati al territorio e al worldbuilding.
+                </p>
+            </div>
+
+            <!-- Griglia Articoli -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Card Articolo 1 (Ricerca - Elsevier) -->
+                <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417422014348?via%3Dihub" target="_blank" class="card-hover group block bg-white border-2 border-primary-200 shadow-md rounded-2xl overflow-hidden flex flex-col relative">
+                    <!-- Badge -->
+                    <div class="absolute top-0 right-0 bg-primary-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg z-10 shadow-sm lang-text tracking-wider" data-it="IN EVIDENZA" data-en="FEATURED">IN EVIDENZA</div>
+                    
+                    <div class="w-full h-48 bg-slate-100 relative overflow-hidden shrink-0">
+                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-100 to-purple-50"></div>
+                        <div class="absolute inset-0 flex items-center justify-center text-indigo-500/40 text-6xl">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="lang-text text-xs font-bold text-slate-400 uppercase tracking-wider mb-2" data-it="Expert Systems with Applications" data-en="Expert Systems with Applications">Expert Systems with Applications</div>
+                        <h3 class="text-lg leading-tight font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors">Adaptive talent journey: Optimization via Deep Q-Learning</h3>
+                        <p class="lang-text text-slate-600 text-sm mb-6 line-clamp-3" data-it="Un metodo innovativo basato sul Deep Q-Learning per ottimizzare il percorso di crescita dei talenti aziendali sfruttando i 'digital twin'." data-en="A novel method based on Deep Q-Learning to optimize the growth path of corporate talents using the concept of 'digital twin'.">Un metodo innovativo basato sul Deep Q-Learning per ottimizzare il percorso di crescita dei talenti aziendali sfruttando i 'digital twin'.</p>
+                        <div class="mt-auto flex items-center gap-2 text-sm font-bold text-primary-600">
+                            <span class="lang-text" data-it="Leggi il Paper" data-en="Read Paper">Leggi il Paper</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card Articolo 2 (Medium) -->
+                <a href="https://medium.com/likeacoffee-dev/three-js-interactive-3d-experiences-f66a95b69729" target="_blank" class="card-hover group block bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col">
+                    <div class="w-full h-48 bg-slate-100 relative overflow-hidden shrink-0">
+                        <div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-slate-50"></div>
+                        <div class="absolute inset-0 flex items-center justify-center text-gray-500/40 text-6xl">
+                            <i class="fa-brands fa-medium"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="lang-text text-xs font-bold text-slate-400 uppercase tracking-wider mb-2" data-it="Medium • Tech Blog" data-en="Medium • Tech Blog">Medium • Tech Blog</div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors">Three.js: Interactive 3D experiences</h3>
+                        <p class="lang-text text-slate-600 text-sm mb-6 line-clamp-3" data-it="Un'esplorazione pratica su come creare esperienze web 3D interattive sfruttando la potenza di Three.js." data-en="A practical exploration on how to create interactive 3D web experiences leveraging the power of Three.js.">Un'esplorazione pratica su come creare esperienze web 3D interattive sfruttando la potenza di Three.js.</p>
+                        <div class="mt-auto flex items-center gap-2 text-sm font-bold text-primary-600">
+                            <span class="lang-text" data-it="Leggi su Medium" data-en="Read on Medium">Leggi su Medium</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-8 bg-slate-950 text-center text-slate-500 text-sm mt-auto">
+        <p class="lang-text" data-it="&copy; 2026 Francesco Marzullo. Tutti i diritti riservati." data-en="&copy; 2026 Francesco Marzullo. All rights reserved.">&copy; 2026 Francesco Marzullo. Tutti i diritti riservati.</p>
+    </footer>
+
+    <!-- LANGUAGE SWITCHER SCRIPT -->
+    <script>
+        function setLanguage(lang) {
+            // Salva la scelta
+            localStorage.setItem('preferredLanguage', lang);
+
+            // Aggiorna lo stile dei pulsanti
+            const btnIt = document.getElementById('lang-it');
+            const btnEn = document.getElementById('lang-en');
+            
+            if (lang === 'it') {
+                btnIt.className = "px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all";
+                btnEn.className = "px-3 py-1.5 rounded-md hover:text-slate-900 transition-all";
+            } else {
+                btnEn.className = "px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all";
+                btnIt.className = "px-3 py-1.5 rounded-md hover:text-slate-900 transition-all";
+            }
+
+            // Cambia i testi in tutta la pagina
+            const elements = document.querySelectorAll('.lang-text');
+            elements.forEach(el => {
+                const newText = el.getAttribute(`data-${lang}`);
+                if (newText) {
+                    el.innerHTML = newText;
+                }
+            });
+        }
+
+        // Carica la lingua all'avvio della pagina
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'it';
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>

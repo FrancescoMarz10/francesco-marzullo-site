@@ -1,0 +1,639 @@
+foruDOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Francesco Marzullo</title>
+    <!-- Aggiunta Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><path fill=%22%232563eb%22 d=%22M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 329.4 329.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 384c17.7 0 32-14.3 32-32s-14.3-32-32-32L32 320c-17.7 0-32 14.3-32 32s14.3 32 32 32l128 0z%22/></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Semplice ombra personalizzata per le card */
+        .card-hover {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased bg-slate-50">
+
+    <!-- Navbar Fissa -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md z-50 border-b border-slate-200 top-0">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold tracking-tight text-slate-900 hover:text-primary-600 transition-colors">
+                <i class="fa-solid fa-terminal text-primary-600 mr-2"></i>Francesco Marzullo
+            </a>
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex gap-6 text-sm font-medium text-slate-600">
+                <a href="#about" class="lang-text hover:text-primary-600 transition-colors" data-it="Chi Sono" data-en="About Me">Chi Sono</a>
+                <a href="#skills" class="lang-text hover:text-primary-600 transition-colors" data-it="Competenze" data-en="Skills">Competenze</a>
+                <a href="#experience" class="lang-text hover:text-primary-600 transition-colors" data-it="Esperienza" data-en="Experience">Esperienza</a>
+                <a href="#blog" class="lang-text hover:text-primary-600 transition-colors" data-it="Articoli" data-en="Articles">Articoli</a>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-4">
+                <!-- Language Switcher -->
+                <div class="flex items-center bg-slate-100 rounded-lg p-1 text-xs font-bold text-slate-500 cursor-pointer shadow-inner">
+                    <button id="lang-it" class="px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all" onclick="setLanguage('it')">IT</button>
+                    <button id="lang-en" class="px-3 py-1.5 rounded-md hover:text-slate-900 transition-all" onclick="setLanguage('en')">EN</button>
+                </div>
+                
+                <a href="mailto:francescomarzullo.cs@gmail.com" class="lang-text px-5 py-2 bg-slate-900 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors shadow-sm" data-it="Contattami" data-en="Contact Me">
+                    Contattami
+                </a>
+            </div>
+            
+            <!-- Bottone Mobile (solo visivo in questa demo) -->
+            <button class="md:hidden text-slate-600 text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="about" class="pt-32 pb-20 px-4 sm:px-8 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+        <div class="flex-1 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 text-primary-600 text-sm font-semibold mb-2">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="lang-text" data-it="Disponibile per nuovi progetti" data-en="Available for new projects">Disponibile per nuovi progetti</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-slate-900">
+                <span class="lang-text block" style="max-width: 600px;" data-it="Sviluppo soluzioni Full-Stack e " data-en="I develop Full-Stack solutions and ">Sviluppo soluzioni Full-Stack e </span><span class="text-primary-600 lang-text" data-it="architetture Cloud" data-en="Cloud architectures">architetture Cloud</span>.
+            </h1>
+            <p class="lang-text text-lg text-slate-600 leading-relaxed max-w-2xl" data-it="Sono uno Sviluppatore Full-Stack con una magistrale in Cloud Computing. Progetto sistemi robusti end-to-end, dai database relazionali alle interfacce web moderne. Quando non scrivo codice, scrivo articoli di natura informatica e mi dedico all'organizzazione di progetti per il mio territorio." data-en="I am a Full-Stack Developer with a master's degree in Cloud Computing. I design robust end-to-end systems, from relational databases to modern web interfaces. When I'm not writing code, I write tech articles and develop projects for my local area.">
+                Sono uno Sviluppatore Full-Stack con una magistrale in Cloud Computing. Progetto sistemi robusti end-to-end, dai database relazionali alle interfacce web moderne. 
+                Quando non scrivo codice, scrivo editoriali per la mia community o coordino progetti per il territorio.
+            </p>
+            <div class="flex gap-4 pt-4">
+                <a href="#skills" class="lang-text px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors shadow-md" data-it="Esplora il Portfolio" data-en="Explore Portfolio">
+                    Esplora il Portfolio
+                </a>
+                <a href="https://github.com/FrancescoMarz10" target="_blank" class="px-6 py-3 bg-white border border-slate-200 text-slate-700 rounded-lg font-medium hover:bg-slate-50 transition-colors flex items-center gap-2">
+                    <i class="fa-brands fa-github text-xl"></i> GitHub
+                </a>
+            </div>
+        </div>
+        <!-- Immagine Profilo / Avatar -->
+        <div class="w-64 h-64 md:w-80 md:h-80 shrink-0 relative">
+            <div class="absolute inset-0 bg-primary-100 rounded-full blur-3xl opacity-60"></div>
+            <img src="./assets/images/francesco_marzullo.jpg" alt="Francesco Marzullo" class="relative z-10 w-full h-full object-cover rounded-full border-4 border-white shadow-xl">
+        </div>
+    </section>
+
+    <!-- SEZIONE COMPETENZE -->
+    <section id="skills" class="py-20 bg-white border-y border-slate-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3">
+                    <i class="fa-solid fa-code-branch text-primary-500"></i> <span class="lang-text" data-it="Competenze Tecnologiche" data-en="Tech Stack">Competenze Tecnologiche</span>
+                </h2>
+                <p class="lang-text text-slate-500 mt-2" data-it="Gli strumenti e le tecnologie che utilizzo per costruire soluzioni Cloud e Full-Stack." data-en="The tools and technologies I use to build Cloud and Full-Stack solutions.">Gli strumenti e le tecnologie che utilizzo per costruire soluzioni Cloud e Full-Stack.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Categoria 1: Frontend -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100">
+                    <div class="w-12 h-12 rounded-lg bg-teal-100 text-teal-600 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-desktop"></i>
+                    </div>
+                    <h3 class="lang-text text-xl font-bold text-slate-900 mb-4" data-it="Frontend" data-en="Frontend">Frontend</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-angular text-red-600 mr-1"></i> Angular</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-vuejs text-green-500 mr-1"></i> Vue.js</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-js text-yellow-500 mr-1"></i> JavaScript</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-blue-600">TS TypeScript</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-html5 text-orange-500 mr-1"></i> HTML5</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-css3-alt text-blue-500 mr-1"></i> CSS3</span>
+                    </div>
+                </div>
+
+                <!-- Categoria 2: Backend -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100">
+                    <div class="w-12 h-12 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <h3 class="lang-text text-xl font-bold text-slate-900 mb-4" data-it="Backend" data-en="Backend">Backend</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-java text-orange-500 mr-1"></i> Java</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-green-600">Spring Boot</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-node-js text-green-500 mr-1"></i> Node.js</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-slate-600">Express</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-blue-500">REST APIs</span>
+                    </div>
+                </div>
+
+                <!-- Categoria 3: Cloud, Database & Tools -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100">
+                    <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+                    <h3 class="lang-text text-xl font-bold text-slate-900 mb-4" data-it="Cloud, Dati & Tools" data-en="Cloud, Data & Tools">Cloud, Dati & Tools</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-solid fa-database text-blue-500 mr-1"></i> SQL</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-slate-600">MariaDB</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-solid fa-leaf text-green-500 mr-1"></i> MongoDB</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-aws text-orange-500 mr-1"></i> AWS</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-google text-blue-500 mr-1"></i> Google Cloud</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-docker text-blue-600 mr-1"></i> Docker</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-git-alt text-orange-600 mr-1"></i> Git</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-purple-600">Magnolia CMS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEZIONE ESPERIENZA & FORMAZIONE -->
+    <section id="experience" class="py-20 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3">
+                    <i class="fa-solid fa-briefcase text-primary-500"></i> <span class="lang-text" data-it="Esperienza e Formazione" data-en="Experience & Education">Esperienza e Formazione</span>
+                </h2>
+                <p class="lang-text text-slate-500 mt-2" data-it="Il mio percorso professionale sul campo e i traguardi accademici." data-en="My professional journey in the field and academic achievements.">Il mio percorso professionale sul campo e i traguardi accademici.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Colonna Sinistra: Lavoro -->
+                <div>
+                    <h3 class="lang-text text-xl font-bold text-slate-800 mb-6 border-b border-slate-200 pb-2" data-it="Esperienza Lavorativa" data-en="Work Experience">Esperienza Lavorativa</h3>
+                    
+                    <div class="relative pl-6 border-l-2 border-slate-200 space-y-8">
+                        
+                        <!-- Job 1: jls digital ag -->
+                        <div class="relative">
+                            <div class="absolute -left-[33px] top-4 w-4 h-4 rounded-full bg-primary-500 ring-4 ring-slate-50"></div>
+                            <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                                <span class="lang-text text-sm font-bold text-primary-600 mb-2 block" data-it="Mag 2022 - Presente" data-en="May 2022 - Present">Mag 2022 - Presente</span>
+                                
+                                <!-- Intestazione con Logo -->
+                                <div class="flex items-start gap-4 mb-1">
+                                    <div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center shrink-0 border border-slate-200">
+                                        <i class="fa-solid fa-laptop-code text-primary-500"></i> <!-- Sostituisci con <img> del logo jls -->
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-bold text-slate-900 leading-tight">Full Stack Developer</h4>
+                                        <div class="text-sm text-slate-500 font-medium mt-1">jls digital ag <span class="text-slate-400 font-normal">&bull; Freelance (Da remoto)</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Job 2: Lavoratore Autonomo -->
+                        <div class="relative">
+                            <div class="absolute -left-[33px] top-4 w-4 h-4 rounded-full bg-sky-400 ring-4 ring-slate-50"></div>
+                            <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                                <span class="lang-text text-sm font-bold text-sky-600 mb-2 block" data-it="Apr 2021 - Presente" data-en="Apr 2021 - Present">Apr 2021 - Presente</span>
+                                
+                                <!-- Intestazione con Logo -->
+                                <div class="flex items-start gap-4 mb-1">
+                                    <div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center shrink-0 border border-slate-200">
+                                        <i class="fa-solid fa-user-tie text-sky-500"></i> <!-- Logo Autonomo -->
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-bold text-slate-900 leading-tight">Full Stack Developer</h4>
+                                        <div class="text-sm text-slate-500 font-medium mt-1">Lavoratore Autonomo <span class="text-slate-400 font-normal">&bull; Freelance</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Job 3: Like a Coffee -->
+                        <div class="relative">
+                            <div class="absolute -left-[33px] top-4 w-4 h-4 rounded-full bg-slate-300 ring-4 ring-slate-50"></div>
+                            <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                                <span class="lang-text text-sm font-bold text-slate-500 mb-2 block" data-it="Set 2019 - Presente" data-en="Sep 2019 - Present">Set 2019 - Presente</span>
+                                
+                                <!-- Intestazione con Logo -->
+                                <div class="flex items-start gap-4 mb-1">
+                                    <div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center shrink-0 border border-slate-200">
+                                        <i class="fa-solid fa-mug-hot text-amber-600"></i> <!-- Sostituisci con <img> del logo Like a Coffee -->
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-bold text-slate-900 leading-tight">Junior Developer</h4>
+                                        <div class="text-sm text-slate-500 font-medium mt-1">Like a Coffee</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Colonna Destra: Formazione & Certificazioni -->
+                <div class="space-y-12">
+                    
+                    <!-- Blocco Formazione -->
+                    <div>
+                        <h3 class="lang-text text-xl font-bold text-slate-800 mb-6 border-b border-slate-200 pb-2" data-it="Istruzione" data-en="Education">Istruzione</h3>
+                        
+                        <div class="relative pl-6 border-l-2 border-slate-200 space-y-8">
+                            
+                            <!-- Magistrale -->
+                            <div class="relative">
+                                <div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-blue-500 ring-4 ring-slate-50"></div>
+                                <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm relative overflow-hidden">
+                                    <div class="absolute top-0 right-0 p-4 opacity-5 text-blue-500 text-5xl">
+                                        <i class="fa-solid fa-graduation-cap"></i>
+                                    </div>
+                                    <span class="lang-text text-sm font-bold text-blue-600 mb-1 block" data-it="2018 - 2020" data-en="2018 - 2020">2018 - 2020</span>
+                                    <h4 class="lang-text text-lg font-bold text-slate-900" data-it="Laurea Magistrale in Cloud Computing" data-en="Master's Degree in Cloud Computing">Laurea Magistrale in Cloud Computing</h4>
+                                    <div class="lang-text text-sm text-slate-500 mb-3 font-medium" data-it="Università degli Studi di Salerno (UNISA)" data-en="University of Salerno (UNISA)">Università degli Studi di Salerno (UNISA)</div>
+                                    <p class="lang-text text-slate-600 text-sm leading-relaxed relative z-10" data-it="Specializzazione in architetture distribuite, servizi cloud, sicurezza e scalabilità dei sistemi." data-en="Specialization in distributed architectures, cloud services, security, and system scalability.">
+                                        Specializzazione in architetture distribuite, servizi cloud, sicurezza e scalabilità dei sistemi.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Triennale -->
+                            <div class="relative">
+                                <div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-slate-300 ring-4 ring-slate-50"></div>
+                                <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm relative overflow-hidden">
+                                    <span class="lang-text text-sm font-bold text-slate-500 mb-1 block" data-it="2015 - 2018" data-en="2015 - 2018">2015 - 2018</span>
+                                    <h4 class="lang-text text-lg font-bold text-slate-900" data-it="Laurea Triennale in Informatica" data-en="Bachelor's Degree in Computer Science">Laurea Triennale in Informatica</h4>
+                                    <div class="lang-text text-sm text-slate-500 mb-3 font-medium" data-it="Università degli Studi di Salerno (UNISA)" data-en="University of Salerno (UNISA)">Università degli Studi di Salerno (UNISA)</div>
+                                    <p class="lang-text text-slate-600 text-sm leading-relaxed relative z-10" data-it="Fondamenti di programmazione, ingegneria del software, basi di dati e sistemi operativi." data-en="Fundamentals of programming, software engineering, databases, and operating systems.">
+                                        Fondamenti di programmazione, ingegneria del software, basi di dati e sistemi operativi.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div> <!-- Chiusura Colonna Destra -->
+            </div> <!-- Chiusura Grid a due colonne -->
+
+            <!-- NUOVO BLOCCO CERTIFICAZIONI E CORSI A LARGHEZZA INTERA -->
+            <div class="mt-16 border-t border-slate-200 pt-12">
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                        <i class="fa-solid fa-certificate text-amber-500"></i> 
+                        <span class="lang-text" data-it="Formazione Continua" data-en="Continuous Learning">Formazione Continua</span>
+                    </h3>
+                </div>
+                
+                <!-- SEZIONE 1: CERTIFICAZIONI UFFICIALI -->
+                <h4 class="text-lg font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2 lang-text" data-it="Certificazioni Ufficiali" data-en="Official Certifications">Certificazioni Ufficiali</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+
+                    <!-- Certificato 1: Magnolia CMS Project -->
+                    <a onclick="openCertModal('Magnolia Certified Project Developer', './assets/certifications/magnolia_developer.png')" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer">
+                        <div class="absolute -right-4 -bottom-4 text-emerald-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-leaf"></i></div>
+                        <span class="text-xs font-bold text-emerald-600 mb-1 block lang-text" data-it="Mag 2026" data-en="May 2026">Mag 2026</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">Magnolia Certified Project Developer</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">Magnolia CMS</div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
+                    </a>
+                    
+                    <!-- Certificato 2: Magnolia CMS Light -->
+                    <a onclick="openCertModal('Magnolia Certified Light Developer', './assets/certifications/magnolia_light.png')" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer">
+                        <div class="absolute -right-4 -bottom-4 text-emerald-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-leaf"></i></div>
+                        <span class="text-xs font-bold text-emerald-600 mb-1 block lang-text" data-it="Feb 2026" data-en="Feb 2026">Feb 2026</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">Magnolia Certified Light Developer</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">Magnolia CMS</div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
+                    </a>
+
+                    <!-- Certificato 3: GCP ML -->
+                    <a onclick="openCertModal('GCP Big Data and Machine Learning', './assets/certifications/gcp.png')" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-blue-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer">
+                        <div class="absolute -right-4 -bottom-4 text-blue-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-brands fa-google"></i></div>
+                        <span class="text-xs font-bold text-blue-600 mb-1 block lang-text" data-it="Mar 2020" data-en="Mar 2020">Mar 2020</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">GCP Big Data and Machine Learning</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">Coursera</div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
+                    </a>
+
+                    <!-- Certificato 4: Deep Neural Networks -->
+                    <a onclick="openCertModal('Improving Deep Neural Networks', './assets/certifications/improving_deep_neural_networks.png')" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer">
+                        <div class="absolute -right-4 -bottom-4 text-indigo-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-network-wired"></i></div>
+                        <span class="text-xs font-bold text-indigo-600 mb-1 block lang-text" data-it="Gen 2020" data-en="Jan 2020">Gen 2020</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">Improving Deep Neural Networks</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">Coursera</div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
+                    </a>
+                    
+                    <!-- Certificato 5: Structuring ML Projects -->
+                    <a onclick="openCertModal('Structuring ML Projects', './assets/certifications/structuring_machin_learning_projects.png')" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer">
+                        <div class="absolute -right-4 -bottom-4 text-indigo-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-sitemap"></i></div>
+                        <span class="text-xs font-bold text-indigo-600 mb-1 block lang-text" data-it="Gen 2020" data-en="Jan 2020">Gen 2020</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">Structuring ML Projects</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">Coursera</div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
+                    </a>
+
+                    <!-- Certificato 6: Neural Networks & Deep Learning -->
+                    <a onclick="openCertModal('Neural Networks and Deep Learning', './assets/certifications/neural_networks_and_deep_learning.png')" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-purple-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer">
+                        <div class="absolute -right-4 -bottom-4 text-purple-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-brain"></i></div>
+                        <span class="text-xs font-bold text-purple-600 mb-1 block lang-text" data-it="Dic 2019" data-en="Dec 2019">Dic 2019</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">Neural Networks and Deep Learning</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">Coursera</div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
+                    </a>
+
+                    <!-- Certificato 7: Python Data Science -->
+                    <a onclick="openCertModal('Python for Data Science Bootcamp', './assets/certifications/python_for_data-science.jpg')" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-yellow-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer">
+                        <div class="absolute -right-4 -bottom-4 text-yellow-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-brands fa-python"></i></div>
+                        <span class="text-xs font-bold text-yellow-600 mb-1 block lang-text" data-it="Ott 2019" data-en="Oct 2019">Ott 2019</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">Python for Data Science Bootcamp</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">Udemy</div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
+                    </a>
+
+                    <!-- Certificato 8: iOS Foundation Program -->
+                    <a onclick="openCertModal('iOS Foundation Program', './assets/certifications/ios.png')" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-slate-800 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer">
+                        <div class="absolute -right-4 -bottom-4 text-slate-800/5 text-6xl group-hover:scale-110 transition-transform"><i class="fa-brands fa-apple"></i></div>
+                        <span class="text-xs font-bold text-slate-600 mb-1 block lang-text" data-it="Gen 2019 - Feb 2019" data-en="Jan 2019 - Feb 2019">Gen 2019 - Feb 2019</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">iOS Foundation Program</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">Università degli Studi di Salerno</div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
+                    </a>
+                </div>
+
+                <!-- SEZIONE 2: ATTESTATI E CONFERENZE -->
+                <h4 class="text-lg font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2 lang-text" data-it="Attestati di Partecipazione e Conferenze" data-en="Certificates of Attendance & Conferences">Attestati di Partecipazione e Conferenze</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    
+                    <!-- Attestato 1: DevSecOps -->
+                    <a onclick="openCertModal('DevSecOps Bootcamp Training', './assets/certifications/devsecops.png')" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-red-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer">
+                        <div class="absolute -right-4 -bottom-4 text-red-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-shield-halved"></i></div>
+                        <span class="text-xs font-bold text-red-600 mb-1 block lang-text" data-it="Ago 2024" data-en="Aug 2024">Ago 2024</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">DevSecOps Bootcamp Training</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">United Security Providers AG</div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
+                    </a>
+
+                    <!-- Attestato 2: MLOps BrightTALK -->
+                    <a onclick="openCertModal('Machine Learning Operations (MLOps): Deploy at Scale', './assets/certifications/bright_talk_2.png')" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-orange-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer">
+                        <div class="absolute -right-4 -bottom-4 text-orange-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-server"></i></div>
+                        <span class="text-xs font-bold text-orange-600 mb-1 block lang-text" data-it="Set 2019" data-en="Sep 2019">Set 2019</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">Machine Learning Operations (MLOps): Deploy at Scale</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">BrightTALK</div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
+                    </a>
+
+                    <!-- Attestato 3: AI Program BrightTALK -->
+                    <a onclick="openCertModal('How to start and progress with an AI program', './assets/certifications/bright_talk_1.png')" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-teal-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer">
+                        <div class="absolute -right-4 -bottom-4 text-teal-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-robot"></i></div>
+                        <span class="text-xs font-bold text-teal-600 mb-1 block lang-text" data-it="Set 2019" data-en="Sep 2019">Set 2019</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">How to start and progress with an AI program</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">BrightTALK</div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
+                    </a>
+
+                    <a onclick="openCertModal('Artificial Intelligence', './assets/certifications/impact_school.png')" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-teal-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer">
+                        <div class="absolute -right-4 -bottom-4 text-teal-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-robot"></i></div>
+                        <span class="text-xs font-bold text-teal-600 mb-1 block lang-text" data-it="Set 2017" data-en="Sep 2017">Set 2017</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">Artificial Intelligence</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">Impact School</div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- NUOVA SEZIONE: BLOG E PUBBLICAZIONI -->
+    <section id="blog" class="py-20 bg-white border-t border-slate-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-4">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3">
+                        <i class="fa-solid fa-pen-nib text-primary-500"></i> <span class="lang-text" data-it="Pubblicazioni e Articoli" data-en="Publications & Articles">Pubblicazioni e Articoli</span>
+                    </h2>
+                    <p class="lang-text text-slate-500 mt-2" data-it="Pensieri scritti, analisi e progetti di ricerca." data-en="Written thoughts, analysis, and research projects.">Pensieri scritti, analisi e progetti di ricerca.</p>
+                </div>
+                <a href="blog.html" class="inline-flex items-center gap-2 text-primary-600 font-medium hover:text-primary-700 bg-primary-50 px-4 py-2 rounded-lg transition-colors">
+                    <span class="lang-text" data-it="Vedi tutti" data-en="View all">Vedi tutti</span> <i class="fa-solid fa-arrow-right text-sm"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Article Card 1: ESEVIER (In evidenza) -->
+                <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417422014348?via%3Dihub" target="_blank" class="card-hover group block bg-white border-2 border-primary-200 shadow-md rounded-2xl overflow-hidden flex flex-col sm:flex-row relative">
+                    <!-- Badge In Evidenza -->
+                    <div class="absolute top-0 right-0 bg-primary-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg z-10 shadow-sm lang-text tracking-wider" data-it="RICERCA SCIENTIFICA" data-en="SCIENTIFIC RESEARCH">RICERCA SCIENTIFICA</div>
+                    
+                    <div class="w-full sm:w-48 h-48 sm:h-auto bg-slate-100 relative overflow-hidden shrink-0">
+                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-100 to-purple-50"></div>
+                        <div class="absolute inset-0 flex items-center justify-center text-indigo-500/40 text-6xl">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col justify-center flex-1">
+                        <div class="lang-text text-xs font-bold text-slate-400 uppercase tracking-wider mb-2" data-it="Elsevier • Luglio 2022" data-en="Elsevier • July 2022">Elsevier • Luglio 2022</div>
+                        <h3 class="text-lg leading-tight font-bold text-slate-900 mb-2 group-hover:text-primary-600 transition-colors">Adaptive talent journey: Optimization via Deep Q-Learning</h3>
+                        <p class="lang-text text-slate-600 text-sm mb-4 line-clamp-3" data-it="Un metodo innovativo basato sul Deep Q-Learning per ottimizzare il percorso di crescita dei talenti aziendali sfruttando i 'digital twin'." data-en="A novel method based on Deep Q-Learning to optimize the growth path of corporate talents using the concept of 'digital twin'.">Un metodo innovativo basato sul Deep Q-Learning per ottimizzare il percorso di crescita dei talenti aziendali sfruttando i 'digital twin'.</p>
+                        <div class="mt-auto flex items-center gap-2 text-sm font-bold text-primary-600">
+                            <span class="lang-text" data-it="Leggi il Paper" data-en="Read the Paper">Leggi il Paper</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Article Card 2: MEDIUM -->
+                <a href="https://medium.com/likeacoffee-dev/three-js-interactive-3d-experiences-f66a95b69729" target="_blank" class="card-hover group block bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col sm:flex-row">
+                    <div class="w-full sm:w-48 h-48 sm:h-auto bg-slate-100 relative overflow-hidden shrink-0">
+                        <div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-slate-50"></div>
+                        <div class="absolute inset-0 flex items-center justify-center text-gray-500/40 text-6xl">
+                            <i class="fa-brands fa-medium"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col justify-center flex-1">
+                        <div class="lang-text text-xs font-bold text-slate-400 uppercase tracking-wider mb-2" data-it="Medium • Tech Blog" data-en="Medium • Tech Blog">Medium • Tech Blog</div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors">Three.js: Interactive 3D experiences</h3>
+                        <p class="lang-text text-slate-600 text-sm mb-4 line-clamp-2" data-it="Un'esplorazione pratica su come creare esperienze web 3D interattive sfruttando la potenza della libreria Three.js." data-en="A practical exploration on how to create interactive 3D web experiences leveraging the power of the Three.js library.">Un'esplorazione pratica su come creare esperienze web 3D interattive sfruttando la potenza della libreria Three.js.</p>
+                        <div class="mt-auto flex items-center gap-2 text-sm font-bold text-primary-600">
+                            <span class="lang-text" data-it="Leggi l'articolo" data-en="Read the article">Leggi l'articolo</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEZIONE IMPEGNO CIVICO E PASSIONI -->
+    <section class="py-16 bg-slate-900 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8">
+            <div class="text-center md:text-left mb-10">
+                <h2 class="text-2xl font-bold mb-3 flex items-center justify-center md:justify-start gap-3">
+                    <i class="fa-solid fa-users text-purple-400"></i> <span class="lang-text" data-it="Impegno Civico e Passioni" data-en="Civic Engagement & Hobbies">Impegno Civico e Passioni</span>
+                </h2>
+                <p class="lang-text text-slate-300 max-w-2xl leading-relaxed text-sm md:text-base" data-it="Credo fortemente nel lavoro di squadra, sia nel codice che nella vita reale. Sono una persona socievole e dedico parte del mio tempo alla comunità locale." data-en="I strongly believe in teamwork, both in code and in real life. I am a sociable person and dedicate part of my time to the local community.">
+                    Credo fortemente nel lavoro di squadra, sia nel codice che nella vita reale. Sono una persona socievole e dedico parte del mio tempo alla comunità locale.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Associazioni -->
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
+                    <h3 class="lang-text text-xl font-semibold mb-4 flex items-center gap-2 text-white" data-it="Community & Redazione" data-en="Community & Editorial">Community & Redazione</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-hands-holding-circle text-primary-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-medium text-slate-100">Forum dei Giovani Teora</h4>
+                                <p class="lang-text text-sm text-slate-400" data-it="Segretario dell'associazione dal 2020, con focus sulla gestione delle comunicazioni e sulla realizzazione di eventi." data-en="Association Secretary since 2020, with a focus on communication management and the creation of events.">Segretario dell'associazione dal 2020, con focus sulla gestione delle comunicazioni e sulla realizzazione di eventi."</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-newspaper text-primary-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-medium text-slate-100">La Pampna</h4>
+                                <p class="lang-text text-sm text-slate-400" data-it="Membro del team comunicazione e redattore per il giornalino locale (<a href='https://www.lapampna.it' target='_blank' class='text-primary-400 hover:underline'>lapampna.it</a>)" data-en="Communication team member and editor for the local newsletter (<a href='https://www.lapampna.it' target='_blank' class='text-primary-400 hover:underline'>lapampna.it</a>)">Membro del team comunicazione e redattore per il giornalino locale (<a href="https://www.lapampna.it" target="_blank" class="text-primary-400 hover:underline">www.lapampna.it</a>)</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Hobby -->
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 flex flex-col justify-center">
+                    <h3 class="lang-text text-xl font-semibold mb-4 flex items-center gap-2 text-white" data-it="Hobby & Interessi" data-en="Hobbies & Interests">Hobby & Interessi</h3>
+                    <p class="lang-text text-slate-300 text-sm leading-relaxed mb-4" data-it="Quando stacco dal monitor, mi piace mantenermi attivo e nutrire la mia creatività. Amo giocare a calcio, immergermi nei videogiochi, ascoltare musica e godermi film, serie TV, fumetti e buoni libri." data-en="When I step away from the monitor, I like to stay active and feed my creativity. I love playing football, diving into video games, listening to music, and enjoying movies, TV series, comics, and good books.">
+                        Quando stacco dal monitor, mi piace mantenermi attivo e nutrire la mia creatività. Amo giocare a calcio, immergermi nei videogiochi, ascoltare musica e godermi film, serie TV, fumetti e buoni libri.
+                    </p>
+                    <div class="flex flex-wrap gap-4 text-2xl text-slate-400 mt-2">
+                        <i class="fa-solid fa-futbol hover:text-white transition-colors" title="Calcio"></i>
+                        <i class="fa-solid fa-gamepad hover:text-white transition-colors" title="Videogiochi"></i>
+                        <i class="fa-solid fa-music hover:text-white transition-colors" title="Musica"></i>
+                        <i class="fa-solid fa-film hover:text-white transition-colors" title="Film & Serie TV"></i>
+                        <i class="fa-solid fa-book-open hover:text-white transition-colors" title="Libri & Fumetti"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-8 bg-slate-950 text-center text-slate-500 text-sm">
+        <p class="lang-text" data-it="&copy; 2026 Francesco Marzullo. Tutti i diritti riservati." data-en="&copy; 2026 Francesco Marzullo. All rights reserved.">&copy; 2026 Francesco Marzullo. Tutti i diritti riservati.</p>
+    </footer>
+
+    <!-- MODALE / POPUP PER I CERTIFICATI -->
+    <div id="certModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 sm:p-8">
+        <!-- Sfondo oscuro con blur (cliccabile per chiudere) -->
+        <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm" onclick="closeCertModal()"></div>
+        
+        <!-- Finestra della modale -->
+        <div class="relative bg-white rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full max-h-[90vh] flex flex-col transform transition-all">
+            <!-- Header della modale -->
+            <div class="flex justify-between items-center p-4 border-b border-slate-100">
+                <h3 id="certModalTitle" class="text-lg font-bold text-slate-900">Certificazione</h3>
+                <button onclick="closeCertModal()" class="text-slate-400 hover:text-slate-700 transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <!-- Contenuto (Immagine o PDF) -->
+            <div class="p-4 overflow-auto flex-1 bg-slate-50 flex items-center justify-center min-h-[50vh]">
+                <!-- Contenitore Immagine -->
+                <img id="certModalImage" src="" alt="Attestato" class="max-w-full max-h-full object-contain rounded-lg shadow-sm border border-slate-200 hidden">
+                <!-- Contenitore PDF -->
+                <iframe id="certModalPdf" src="" class="w-full h-[60vh] md:h-[70vh] rounded-lg shadow-sm border border-slate-200 hidden" type="application/pdf"></iframe>
+                <p id="certModalFallback" class="hidden text-slate-400 text-sm italic">Documento non trovato</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LANGUAGE SWITCHER E SCRIPT PER MODALI -->
+    <script>
+        function setLanguage(lang) {
+            // Salva la scelta nel browser per le altre pagine
+            localStorage.setItem('preferredLanguage', lang);
+
+            // Aggiorna lo stile dei pulsanti
+            const btnIt = document.getElementById('lang-it');
+            const btnEn = document.getElementById('lang-en');
+            
+            if (lang === 'it') {
+                btnIt.className = "px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all";
+                btnEn.className = "px-3 py-1.5 rounded-md hover:text-slate-900 transition-all";
+            } else {
+                btnEn.className = "px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all";
+                btnIt.className = "px-3 py-1.5 rounded-md hover:text-slate-900 transition-all";
+            }
+
+            // Cambia i testi in tutta la pagina
+            const elements = document.querySelectorAll('.lang-text');
+            elements.forEach(el => {
+                const newText = el.getAttribute(`data-${lang}`);
+                if (newText) {
+                    el.innerHTML = newText;
+                }
+            });
+        }
+
+        // Applica la lingua salvata quando la pagina si carica
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'it';
+            setLanguage(savedLang);
+        });
+
+        // LOGICA DEL POPUP CERTIFICATI (Supporta PDF o Immagini)
+        function openCertModal(title, fileSrc) {
+            const modal = document.getElementById('certModal');
+            const imgEl = document.getElementById('certModalImage');
+            const pdfEl = document.getElementById('certModalPdf');
+            const fallbackEl = document.getElementById('certModalFallback');
+            
+            document.getElementById('certModalTitle').innerText = title;
+            
+            // Nasconde tutto preventivamente
+            imgEl.classList.add('hidden');
+            pdfEl.classList.add('hidden');
+            fallbackEl.classList.add('hidden');
+
+            // Verifica estensione per capire se usare iframe (PDF) o img (JPG/PNG)
+            if (fileSrc.toLowerCase().endsWith('.pdf')) {
+                pdfEl.src = fileSrc;
+                pdfEl.classList.remove('hidden');
+            } else {
+                imgEl.src = fileSrc;
+                imgEl.onerror = function() {
+                    imgEl.classList.add('hidden');
+                    fallbackEl.classList.remove('hidden');
+                };
+                imgEl.onload = function() {
+                    imgEl.classList.remove('hidden');
+                    fallbackEl.classList.add('hidden');
+                };
+            }
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Blocca scroll sito posteriore
+        }
+
+        function closeCertModal() {
+            document.getElementById('certModal').classList.add('hidden');
+            document.getElementById('certModalPdf').src = ''; // Ferma il PDF se in riproduzione
+            document.body.style.overflow = ''; 
+        }
+    </script>
+</body>
+</html>
