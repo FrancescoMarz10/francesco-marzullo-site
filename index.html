@@ -34,7 +34,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/style.css?v=6">
+    <link rel="stylesheet" href="./assets/css/style.css?v=7">
 
 </head>
 <body class="text-slate-800 antialiased bg-slate-50 dark:bg-slate-950 dark:text-slate-100">
@@ -117,20 +117,17 @@
             <p class="lang-text text-lg text-slate-600 leading-relaxed max-w-2xl dark:text-slate-300" data-it="Sono uno Sviluppatore Full-Stack con una magistrale in Cloud Computing. Progetto sistemi robusti end-to-end, dai database relazionali alle interfacce web moderne. Quando non scrivo codice, scrivo articoli di natura informatica e mi dedico all'organizzazione di progetti per il mio territorio." data-en="I am a Full-Stack Developer with a master's degree in Cloud Computing. I design robust end-to-end systems, from relational databases to modern web interfaces. When I'm not writing code, I write tech articles and develop projects for my local area.">
                 Sono uno Sviluppatore Full-Stack con una magistrale in Cloud Computing. Progetto sistemi robusti end-to-end, dai database relazionali alle interfacce web moderne. Quando non scrivo codice, scrivo articoli di natura informatica e mi dedico all'organizzazione di progetti per il mio territorio.
             </p>
-            <div class="flex gap-3 sm:gap-4 pt-4">
-                <a href="#skills" class="lang-text flex-1 sm:flex-none text-center px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors shadow-md" data-it="Esplora il Portfolio" data-en="Explore Portfolio">
-                    Esplora il Portfolio
-                </a>
-                <a href="https://github.com/FrancescoMarz10" target="_blank" rel="noopener" aria-label="GitHub" class="shrink-0 px-4 lg:px-6 py-3 bg-white border border-slate-200 text-slate-700 rounded-lg font-medium hover:bg-slate-50 transition-colors flex items-center gap-2 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200 dark:hover:bg-slate-800">
-                    <i class="fa-brands fa-github text-xl" aria-hidden="true"></i> <span class="hidden lg:inline">GitHub</span>
-                </a>
-                <a href="https://www.linkedin.com/in/francesco-marzullo" target="_blank" rel="noopener" aria-label="LinkedIn" class="shrink-0 px-4 lg:px-6 py-3 bg-white border border-slate-200 text-slate-700 rounded-lg font-medium hover:bg-slate-50 transition-colors flex items-center gap-2 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200 dark:hover:bg-slate-800">
-                    <i class="fa-brands fa-linkedin text-xl text-[#0a66c2] dark:text-[#70b5f9]" aria-hidden="true"></i> <span class="hidden lg:inline">LinkedIn</span>
-                </a>
+            <!-- Azioni: portfolio, CV, profili -->
+            <div class="flex flex-col sm:flex-row sm:flex-wrap gap-3 pt-4">
+                <a href="#skills" class="lang-text text-center px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors shadow-md" data-it="Esplora il Portfolio" data-en="Explore Portfolio">Esplora il Portfolio</a>
+                <div class="flex gap-3">
+                    <a href="./assets/cv/CV-Francesco-Marzullo-IT.pdf" data-href-it="./assets/cv/CV-Francesco-Marzullo-IT.pdf" data-href-en="./assets/cv/CV-Francesco-Marzullo-EN.pdf" download class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 bg-white border border-slate-200 text-slate-800 rounded-lg font-medium shadow-sm hover:border-primary-200 hover:text-primary-600 transition-colors dark:bg-slate-900 dark:border-slate-700 dark:text-slate-100 dark:hover:border-primary-700 dark:hover:text-primary-400">
+                        <i class="fa-solid fa-file-arrow-down text-primary-500" aria-hidden="true"></i><span class="lang-text" data-it="Scarica il CV" data-en="Download CV">Scarica il CV</span>
+                    </a>
+                    <a href="https://github.com/FrancescoMarz10" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub" class="w-12 h-12 shrink-0 rounded-lg border border-slate-200 bg-white flex items-center justify-center shadow-sm hover:border-slate-300 hover:bg-slate-50 transition-colors dark:bg-slate-900 dark:border-slate-700 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100"><i class="fa-brands fa-github text-xl" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/francesco-marzullo" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn" class="w-12 h-12 shrink-0 rounded-lg border border-slate-200 bg-white flex items-center justify-center shadow-sm hover:border-slate-300 hover:bg-slate-50 transition-colors dark:bg-slate-900 dark:border-slate-700 dark:hover:bg-slate-800"><i class="fa-brands fa-linkedin text-xl text-[#0a66c2] dark:text-[#70b5f9]" aria-hidden="true"></i></a>
+                </div>
             </div>
-            <a href="./assets/cv/CV-Francesco-Marzullo-IT.pdf" data-href-it="./assets/cv/CV-Francesco-Marzullo-IT.pdf" data-href-en="./assets/cv/CV-Francesco-Marzullo-EN.pdf" download class="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-primary-600 dark:text-slate-300 dark:hover:text-primary-400 transition-colors">
-                <i class="fa-solid fa-file-arrow-down text-primary-500" aria-hidden="true"></i><span class="lang-text underline underline-offset-4 decoration-slate-300 dark:decoration-slate-600" data-it="Scarica il CV (PDF)" data-en="Download my CV (PDF)">Scarica il CV (PDF)</span>
-            </a>
         </div>
         <!-- Immagine Profilo / Avatar -->
         <div class="order-first md:order-none w-28 h-28 md:w-80 md:h-80 shrink-0 relative">
