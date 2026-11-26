@@ -4,42 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog & Pubblicazioni | Francesco Marzullo</title>
+    <meta name="description" content="Pubblicazioni e articoli di Francesco Marzullo: ricerca scientifica, tecnologia e sviluppo web.">
+    <link rel="canonical" href="https://francescomarzullo.it/blog.html">
+    <!-- Anteprima per social e app di messaggistica -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:site_name" content="Francesco Marzullo">
+    <meta property="og:title" content="Blog & Pubblicazioni | Francesco Marzullo">
+    <meta property="og:description" content="Pubblicazioni e articoli di Francesco Marzullo: ricerca scientifica, tecnologia e sviluppo web.">
+    <meta property="og:url" content="https://francescomarzullo.it/blog.html">
+    <meta property="og:image" content="https://francescomarzullo.it/assets/images/francesco_marzullo.jpg">
+    <meta property="og:image:alt" content="Foto di Francesco Marzullo">
+    <meta name="twitter:card" content="summary">
     <!-- Aggiunta Favicon -->
-    <link rel="icon" href="https://www.francescomarzullo.it/assets/images/logo.png?v=4" type="image/png">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="./assets/images/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="./assets/images/apple-touch-icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            900: '#1e3a8a',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Semplice ombra personalizzata per le card */
-        .card-hover {
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+    <link rel="stylesheet" href="./assets/css/style.css?v=1">
+
 </head>
 <body class="text-slate-800 antialiased bg-slate-50 flex flex-col min-h-screen">
 
@@ -49,14 +35,15 @@
             <a href="index.html" class="text-xl font-bold tracking-tight text-slate-900 hover:text-primary-600 transition-colors">
                 <i class="fa-solid fa-terminal text-primary-600 mr-2"></i>Francesco Marzullo
             </a>
-            
+
             <!-- Menu Desktop -->
             <div class="hidden md:flex gap-6 text-sm font-medium text-slate-600">
                 <a href="index.html#about" class="lang-text hover:text-primary-600 transition-colors" data-it="Home" data-en="Home">Home</a>
                 <a href="index.html#skills" class="lang-text hover:text-primary-600 transition-colors" data-it="Competenze" data-en="Skills">Competenze</a>
                 <a href="index.html#experience" class="lang-text hover:text-primary-600 transition-colors" data-it="Esperienza" data-en="Experience">Esperienza</a>
+                <a href="index.html#projects" class="lang-text hover:text-primary-600 transition-colors" data-it="Progetti" data-en="Projects">Progetti</a>
             </div>
-            
+
             <div class="flex items-center gap-4">
                 <!-- Language Switcher -->
                 <div class="flex items-center bg-slate-100 rounded-lg p-1 text-xs font-bold text-slate-500 cursor-pointer shadow-inner">
@@ -70,14 +57,14 @@
     <!-- MAIN CONTENT -->
     <main class="flex-grow pt-32 pb-20">
         <div class="max-w-6xl mx-auto px-4 sm:px-8">
-            
+
             <!-- Header Blog -->
             <div class="mb-12 border-b border-slate-200 pb-8">
                 <a href="index.html" class="inline-flex items-center gap-2 text-primary-600 text-sm font-medium hover:text-primary-700 mb-6 transition-colors">
                     <i class="fa-solid fa-arrow-left"></i> <span class="lang-text" data-it="Torna al Portfolio" data-en="Back to Portfolio">Torna al Portfolio</span>
                 </a>
                 <h1 class="text-4xl font-bold text-slate-900 flex items-center gap-3">
-                    <i class="fa-solid fa-book-open text-primary-500"></i> 
+                    <i class="fa-solid fa-book-open text-primary-500"></i>
                     <span class="lang-text" data-it="Archivio Pubblicazioni" data-en="Publications Archive">Archivio Pubblicazioni</span>
                 </h1>
                 <p class="lang-text text-lg text-slate-500 mt-4 max-w-2xl" data-it="La raccolta completa dei miei editoriali, riflessioni tecnologiche e articoli legati al territorio e al worldbuilding." data-en="The complete collection of my editorials, technological reflections, and articles related to the territory and worldbuilding.">
@@ -87,12 +74,12 @@
 
             <!-- Griglia Articoli -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
+
                 <!-- Card Articolo 1 (Ricerca - Elsevier) -->
-                <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417422014348?via%3Dihub" target="_blank" class="card-hover group block bg-white border-2 border-primary-200 shadow-md rounded-2xl overflow-hidden flex flex-col relative">
+                <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417422014348?via%3Dihub" target="_blank" rel="noopener" class="card-hover group block bg-white border-2 border-primary-200 shadow-md rounded-2xl overflow-hidden flex flex-col relative">
                     <!-- Badge -->
                     <div class="absolute top-0 right-0 bg-primary-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg z-10 shadow-sm lang-text tracking-wider" data-it="IN EVIDENZA" data-en="FEATURED">IN EVIDENZA</div>
-                    
+
                     <div class="w-full h-48 bg-slate-100 relative overflow-hidden shrink-0">
                         <div class="absolute inset-0 bg-gradient-to-br from-indigo-100 to-purple-50"></div>
                         <div class="absolute inset-0 flex items-center justify-center text-indigo-500/40 text-6xl">
@@ -110,7 +97,7 @@
                 </a>
 
                 <!-- Card Articolo 2 (Medium) -->
-                <a href="https://medium.com/likeacoffee-dev/three-js-interactive-3d-experiences-f66a95b69729" target="_blank" class="card-hover group block bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col">
+                <a href="https://medium.com/likeacoffee-dev/three-js-interactive-3d-experiences-f66a95b69729" target="_blank" rel="noopener" class="card-hover group block bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col">
                     <div class="w-full h-48 bg-slate-100 relative overflow-hidden shrink-0">
                         <div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-slate-50"></div>
                         <div class="absolute inset-0 flex items-center justify-center text-gray-500/40 text-6xl">
@@ -140,11 +127,12 @@
         function setLanguage(lang) {
             // Salva la scelta
             localStorage.setItem('preferredLanguage', lang);
+            document.documentElement.lang = lang;
 
             // Aggiorna lo stile dei pulsanti
             const btnIt = document.getElementById('lang-it');
             const btnEn = document.getElementById('lang-en');
-            
+
             if (lang === 'it') {
                 btnIt.className = "px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all";
                 btnEn.className = "px-3 py-1.5 rounded-md hover:text-slate-900 transition-all";
