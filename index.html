@@ -21,65 +21,81 @@
     <link rel="icon" href="./assets/images/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="apple-touch-icon" href="./assets/images/apple-touch-icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Tema: chiaro di default, scuro solo se scelto con l'interruttore (applicato prima del disegno per evitare lampi) -->
+    <script>
+        (function () {
+            var saved = null;
+            try { saved = localStorage.getItem('colorTheme'); } catch (e) {}
+            if (saved === 'dark') document.documentElement.classList.add('dark');
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/style.css?v=1">
+    <link rel="stylesheet" href="./assets/css/style.css?v=5">
 
 </head>
-<body class="text-slate-800 antialiased bg-slate-50">
+<body class="text-slate-800 antialiased bg-slate-50 dark:bg-slate-950 dark:text-slate-100">
 
     <!-- Navbar Fissa -->
-    <nav class="fixed w-full bg-white/90 backdrop-blur-md z-50 border-b border-slate-200 top-0">
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md z-50 border-b border-slate-200 top-0 dark:bg-slate-950/90 dark:border-slate-800">
         <div class="max-w-6xl mx-auto px-4 sm:px-8 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold tracking-tight text-slate-900 hover:text-primary-600 transition-colors">
-                <i class="fa-solid fa-terminal text-primary-600 mr-2"></i>Francesco Marzullo
+            <a href="#" class="text-xl font-bold tracking-tight text-slate-900 hover:text-primary-600 transition-colors dark:text-white dark:hover:text-primary-400">
+                <i class="fa-solid fa-terminal text-primary-600 mr-2 dark:text-primary-400"></i>Francesco Marzullo
             </a>
             <!-- Menu Desktop -->
-            <div class="hidden md:flex gap-6 text-sm font-medium text-slate-600">
-                <a href="#about" class="lang-text hover:text-primary-600 transition-colors" data-it="Chi Sono" data-en="About Me">Chi Sono</a>
-                <a href="#skills" class="lang-text hover:text-primary-600 transition-colors" data-it="Competenze" data-en="Skills">Competenze</a>
-                <a href="#experience" class="lang-text hover:text-primary-600 transition-colors" data-it="Esperienza" data-en="Experience">Esperienza</a>
-                <a href="#projects" class="lang-text hover:text-primary-600 transition-colors" data-it="Progetti" data-en="Projects">Progetti</a>
-                <a href="#blog" class="lang-text hover:text-primary-600 transition-colors" data-it="Articoli" data-en="Articles">Articoli</a>
+            <div class="nav-desktop hidden md:flex gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="#about" class="nav-link lang-text hover:text-primary-600 transition-colors dark:hover:text-primary-400" data-it="Chi Sono" data-en="About Me">Chi Sono</a>
+                <a href="#skills" class="nav-link lang-text hover:text-primary-600 transition-colors dark:hover:text-primary-400" data-it="Competenze" data-en="Skills">Competenze</a>
+                <a href="#experience" class="nav-link lang-text hover:text-primary-600 transition-colors dark:hover:text-primary-400" data-it="Esperienza" data-en="Experience">Esperienza</a>
+                <a href="#projects" class="nav-link lang-text hover:text-primary-600 transition-colors dark:hover:text-primary-400" data-it="Progetti" data-en="Projects">Progetti</a>
+                <a href="#blog" class="nav-link lang-text hover:text-primary-600 transition-colors dark:hover:text-primary-400" data-it="Articoli" data-en="Articles">Articoli</a>
             </div>
 
             <div class="hidden md:flex items-center gap-4">
+                <!-- Tema chiaro / scuro -->
+                <button type="button" class="theme-toggle w-9 h-9 shrink-0 rounded-lg bg-slate-100 dark:bg-slate-800 text-amber-500 dark:text-slate-200 hover:text-amber-600 dark:hover:text-white flex items-center justify-center shadow-inner transition-colors" aria-label="Attiva tema scuro" aria-pressed="false">
+                    <i class="fa-solid fa-sun dark:hidden" aria-hidden="true"></i><i class="fa-solid fa-moon hidden dark:inline-block" aria-hidden="true"></i>
+                </button>
                 <!-- Language Switcher -->
-                <div class="flex items-center bg-slate-100 rounded-lg p-1 text-xs font-bold text-slate-500 cursor-pointer shadow-inner">
-                    <button id="lang-it" class="px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all" onclick="setLanguage('it')">IT</button>
-                    <button id="lang-en" class="px-3 py-1.5 rounded-md hover:text-slate-900 transition-all" onclick="setLanguage('en')">EN</button>
+                <div class="flex items-center bg-slate-100 rounded-lg p-1 text-xs font-bold text-slate-500 cursor-pointer shadow-inner dark:bg-slate-800 dark:text-slate-400">
+                    <button id="lang-it" class="px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all dark:bg-slate-900 dark:text-white" onclick="setLanguage('it')">IT</button>
+                    <button id="lang-en" class="px-3 py-1.5 rounded-md hover:text-slate-900 transition-all dark:hover:text-white" onclick="setLanguage('en')">EN</button>
                 </div>
 
-                <a href="#contact" class="lang-text px-5 py-2 bg-slate-900 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors shadow-sm" data-it="Contattami" data-en="Contact Me">
+                <a href="#contact" class="lang-text px-5 py-2 bg-slate-900 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors shadow-sm dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200" data-it="Contattami" data-en="Contact Me">
                     Contattami
                 </a>
             </div>
 
         <!-- Bottone Mobile -->
-            <button id="mobileMenuBtn" type="button" class="md:hidden text-slate-600 text-2xl" aria-label="Apri menu" data-label-it="Apri menu" data-label-en="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+            <button id="mobileMenuBtn" type="button" class="md:hidden text-slate-600 text-2xl dark:text-slate-300" aria-label="Apri menu" data-label-it="Apri menu" data-label-en="Open menu" aria-controls="mobileMenu" aria-expanded="false">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
 
         <!-- Menu Mobile (Inizialmente nascosto) -->
-        <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-slate-200 shadow-lg absolute w-full left-0 top-full">
+        <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-slate-200 shadow-lg absolute w-full left-0 top-full dark:bg-slate-900 dark:border-slate-800">
             <div class="flex flex-col px-4 py-4 space-y-4 text-center">
-                <a href="#about" class="lang-text font-medium text-slate-600 hover:text-primary-600 transition-colors py-2" data-it="Chi Sono" data-en="About Me" onclick="toggleMobileMenu()">Chi Sono</a>
-                <a href="#skills" class="lang-text font-medium text-slate-600 hover:text-primary-600 transition-colors py-2 border-t border-slate-100" data-it="Competenze" data-en="Skills" onclick="toggleMobileMenu()">Competenze</a>
-                <a href="#experience" class="lang-text font-medium text-slate-600 hover:text-primary-600 transition-colors py-2 border-t border-slate-100" data-it="Esperienza" data-en="Experience" onclick="toggleMobileMenu()">Esperienza</a>
-                <a href="#projects" class="lang-text font-medium text-slate-600 hover:text-primary-600 transition-colors py-2 border-t border-slate-100" data-it="Progetti" data-en="Projects" onclick="toggleMobileMenu()">Progetti</a>
-                <a href="#blog" class="lang-text font-medium text-slate-600 hover:text-primary-600 transition-colors py-2 border-t border-slate-100" data-it="Articoli" data-en="Articles" onclick="toggleMobileMenu()">Articoli</a>
+                <a href="#about" class="nav-link lang-text font-medium text-slate-600 hover:text-primary-600 transition-colors py-2 dark:text-slate-300 dark:hover:text-primary-400" data-it="Chi Sono" data-en="About Me" onclick="toggleMobileMenu()">Chi Sono</a>
+                <a href="#skills" class="nav-link lang-text font-medium text-slate-600 hover:text-primary-600 transition-colors py-2 border-t border-slate-100 dark:text-slate-300 dark:hover:text-primary-400 dark:border-slate-800" data-it="Competenze" data-en="Skills" onclick="toggleMobileMenu()">Competenze</a>
+                <a href="#experience" class="nav-link lang-text font-medium text-slate-600 hover:text-primary-600 transition-colors py-2 border-t border-slate-100 dark:text-slate-300 dark:hover:text-primary-400 dark:border-slate-800" data-it="Esperienza" data-en="Experience" onclick="toggleMobileMenu()">Esperienza</a>
+                <a href="#projects" class="nav-link lang-text font-medium text-slate-600 hover:text-primary-600 transition-colors py-2 border-t border-slate-100 dark:text-slate-300 dark:hover:text-primary-400 dark:border-slate-800" data-it="Progetti" data-en="Projects" onclick="toggleMobileMenu()">Progetti</a>
+                <a href="#blog" class="nav-link lang-text font-medium text-slate-600 hover:text-primary-600 transition-colors py-2 border-t border-slate-100 dark:text-slate-300 dark:hover:text-primary-400 dark:border-slate-800" data-it="Articoli" data-en="Articles" onclick="toggleMobileMenu()">Articoli</a>
 
-                <div class="flex justify-center items-center gap-4 pt-4 border-t border-slate-100">
+                <div class="flex justify-center items-center gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                    <!-- Tema chiaro / scuro -->
+                    <button type="button" class="theme-toggle w-9 h-9 shrink-0 rounded-lg bg-slate-100 dark:bg-slate-800 text-amber-500 dark:text-slate-200 hover:text-amber-600 dark:hover:text-white flex items-center justify-center shadow-inner transition-colors" aria-label="Attiva tema scuro" aria-pressed="false">
+                        <i class="fa-solid fa-sun dark:hidden" aria-hidden="true"></i><i class="fa-solid fa-moon hidden dark:inline-block" aria-hidden="true"></i>
+                    </button>
                     <!-- Language Switcher Mobile -->
-                    <div class="flex items-center bg-slate-100 rounded-lg p-1 text-xs font-bold text-slate-500 cursor-pointer shadow-inner">
-                        <button id="lang-it-mobile" class="px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all focus:outline-none" onclick="setLanguage('it'); toggleMobileMenu()">IT</button>
-                        <button id="lang-en-mobile" class="px-3 py-1.5 rounded-md hover:text-slate-900 transition-all focus:outline-none" onclick="setLanguage('en'); toggleMobileMenu()">EN</button>
+                    <div class="flex items-center bg-slate-100 rounded-lg p-1 text-xs font-bold text-slate-500 cursor-pointer shadow-inner dark:bg-slate-800 dark:text-slate-400">
+                        <button id="lang-it-mobile" class="px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all focus:outline-none dark:bg-slate-900 dark:text-white" onclick="setLanguage('it'); toggleMobileMenu()">IT</button>
+                        <button id="lang-en-mobile" class="px-3 py-1.5 rounded-md hover:text-slate-900 transition-all focus:outline-none dark:hover:text-white" onclick="setLanguage('en'); toggleMobileMenu()">EN</button>
                     </div>
                 </div>
 
-                <a href="#contact" class="lang-text block mt-4 px-5 py-3 bg-slate-900 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors shadow-sm w-full" data-it="Contattami" data-en="Contact Me" onclick="toggleMobileMenu()">
+                <a href="#contact" class="lang-text block mt-4 px-5 py-3 bg-slate-900 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors shadow-sm w-full dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200" data-it="Contattami" data-en="Contact Me" onclick="toggleMobileMenu()">
                     Contattami
                 </a>
             </div>
@@ -87,94 +103,94 @@
     </nav>
 
     <!-- HERO SECTION -->
-    <section id="about" class="pt-32 pb-20 px-4 sm:px-8 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
-        <div class="flex-1 space-y-6">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 text-primary-600 text-sm font-semibold mb-2">
+    <section id="about" class="pt-24 md:pt-32 pb-20 px-4 sm:px-8 max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12">
+        <div class="flex-1 min-w-0 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 text-primary-600 text-sm font-semibold mb-2 dark:bg-primary-900/40 dark:text-primary-400">
                 <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                 <span class="lang-text" data-it="Disponibile per sviluppo software e consulenza" data-en="Available for software development and consulting">Disponibile per sviluppo software e consulenza</span>
             </div>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-slate-900">
-                <span class="lang-text block" style="max-width: 600px;" data-it="Sviluppo soluzioni Full-Stack e " data-en="I develop Full-Stack solutions and ">Sviluppo soluzioni Full-Stack e </span><span class="text-primary-600 lang-text" data-it="architetture Cloud" data-en="Cloud architectures">architetture Cloud</span>.
+            <h1 class="text-[2rem] min-[360px]:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-slate-900 dark:text-white">
+                <span class="lang-text block" style="max-width: 600px;" data-it="Sviluppo soluzioni <span class='whitespace-nowrap'>Full-Stack</span> e " data-en="I develop <span class='whitespace-nowrap'>Full-Stack</span> solutions and ">Sviluppo soluzioni <span class="whitespace-nowrap">Full-Stack</span> e </span><span class="text-primary-600 lang-text dark:text-primary-400" data-it="architetture Cloud" data-en="Cloud architectures">architetture Cloud</span>.
             </h1>
-            <p class="lang-text text-lg text-slate-600 leading-relaxed max-w-2xl" data-it="Sono uno Sviluppatore Full-Stack con una magistrale in Cloud Computing. Progetto sistemi robusti end-to-end, dai database relazionali alle interfacce web moderne. Quando non scrivo codice, scrivo articoli di natura informatica e mi dedico all'organizzazione di progetti per il mio territorio." data-en="I am a Full-Stack Developer with a master's degree in Cloud Computing. I design robust end-to-end systems, from relational databases to modern web interfaces. When I'm not writing code, I write tech articles and develop projects for my local area.">
+            <p class="lang-text text-lg text-slate-600 leading-relaxed max-w-2xl dark:text-slate-300" data-it="Sono uno Sviluppatore Full-Stack con una magistrale in Cloud Computing. Progetto sistemi robusti end-to-end, dai database relazionali alle interfacce web moderne. Quando non scrivo codice, scrivo articoli di natura informatica e mi dedico all'organizzazione di progetti per il mio territorio." data-en="I am a Full-Stack Developer with a master's degree in Cloud Computing. I design robust end-to-end systems, from relational databases to modern web interfaces. When I'm not writing code, I write tech articles and develop projects for my local area.">
                 Sono uno Sviluppatore Full-Stack con una magistrale in Cloud Computing. Progetto sistemi robusti end-to-end, dai database relazionali alle interfacce web moderne. Quando non scrivo codice, scrivo articoli di natura informatica e mi dedico all'organizzazione di progetti per il mio territorio.
             </p>
-            <div class="flex flex-wrap gap-4 pt-4">
-                <a href="#skills" class="lang-text px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors shadow-md" data-it="Esplora il Portfolio" data-en="Explore Portfolio">
+            <div class="flex gap-3 sm:gap-4 pt-4">
+                <a href="#skills" class="lang-text flex-1 sm:flex-none text-center px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors shadow-md" data-it="Esplora il Portfolio" data-en="Explore Portfolio">
                     Esplora il Portfolio
                 </a>
-                <a href="https://github.com/FrancescoMarz10" target="_blank" rel="noopener" class="px-6 py-3 bg-white border border-slate-200 text-slate-700 rounded-lg font-medium hover:bg-slate-50 transition-colors flex items-center gap-2">
-                    <i class="fa-brands fa-github text-xl"></i> GitHub
+                <a href="https://github.com/FrancescoMarz10" target="_blank" rel="noopener" aria-label="GitHub" class="shrink-0 px-4 sm:px-6 py-3 bg-white border border-slate-200 text-slate-700 rounded-lg font-medium hover:bg-slate-50 transition-colors flex items-center gap-2 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200 dark:hover:bg-slate-800">
+                    <i class="fa-brands fa-github text-xl" aria-hidden="true"></i> <span class="hidden sm:inline">GitHub</span>
                 </a>
-                <a href="https://www.linkedin.com/in/francesco-marzullo" target="_blank" rel="noopener" class="px-6 py-3 bg-white border border-slate-200 text-slate-700 rounded-lg font-medium hover:bg-slate-50 transition-colors flex items-center gap-2">
-                    <i class="fa-brands fa-linkedin text-xl text-[#0a66c2]"></i> LinkedIn
+                <a href="https://www.linkedin.com/in/francesco-marzullo" target="_blank" rel="noopener" aria-label="LinkedIn" class="shrink-0 px-4 sm:px-6 py-3 bg-white border border-slate-200 text-slate-700 rounded-lg font-medium hover:bg-slate-50 transition-colors flex items-center gap-2 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200 dark:hover:bg-slate-800">
+                    <i class="fa-brands fa-linkedin text-xl text-[#0a66c2] dark:text-[#70b5f9]" aria-hidden="true"></i> <span class="hidden sm:inline">LinkedIn</span>
                 </a>
             </div>
         </div>
         <!-- Immagine Profilo / Avatar -->
-        <div class="w-64 h-64 md:w-80 md:h-80 shrink-0 relative">
-            <div class="absolute inset-0 bg-primary-100 rounded-full blur-3xl opacity-60"></div>
-            <img src="./assets/images/francesco_marzullo.webp" alt="Francesco Marzullo" width="612" height="609" fetchpriority="high" class="relative z-10 w-full h-full object-cover rounded-full border-4 border-white shadow-xl">
+        <div class="order-first md:order-none w-28 h-28 md:w-80 md:h-80 shrink-0 relative">
+            <div class="absolute inset-0 bg-primary-100 rounded-full blur-3xl opacity-60 dark:bg-primary-900/50"></div>
+            <img src="./assets/images/francesco_marzullo.webp" alt="Francesco Marzullo" width="612" height="609" fetchpriority="high" class="relative z-10 w-full h-full object-cover rounded-full border-[3px] md:border-4 border-white shadow-xl dark:border-slate-800">
         </div>
     </section>
 
     <!-- SEZIONE COMPETENZE -->
-    <section id="skills" class="py-20 bg-white border-y border-slate-100">
+    <section id="skills" class="py-20 bg-white border-y border-slate-100 dark:bg-slate-950 dark:border-slate-800">
         <div class="max-w-6xl mx-auto px-4 sm:px-8">
             <div class="mb-12">
-                <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3">
+                <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3 dark:text-white">
                     <i class="fa-solid fa-code-branch text-primary-500"></i> <span class="lang-text" data-it="Competenze Tecnologiche" data-en="Tech Stack">Competenze Tecnologiche</span>
                 </h2>
-                <p class="lang-text text-slate-500 mt-2" data-it="Gli strumenti e le tecnologie che utilizzo per costruire soluzioni Cloud e Full-Stack." data-en="The tools and technologies I use to build Cloud and Full-Stack solutions.">Gli strumenti e le tecnologie che utilizzo per costruire soluzioni Cloud e Full-Stack.</p>
+                <p class="lang-text text-slate-500 mt-2 dark:text-slate-400" data-it="Gli strumenti e le tecnologie che utilizzo per costruire soluzioni Cloud e Full-Stack." data-en="The tools and technologies I use to build Cloud and Full-Stack solutions.">Gli strumenti e le tecnologie che utilizzo per costruire soluzioni Cloud e Full-Stack.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Categoria 1: Frontend -->
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100">
-                    <div class="w-12 h-12 rounded-lg bg-teal-100 text-teal-600 flex items-center justify-center text-2xl mb-4">
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 dark:bg-slate-900 dark:border-slate-800">
+                    <div class="w-12 h-12 rounded-lg bg-teal-100 text-teal-600 flex items-center justify-center text-2xl mb-4 dark:bg-teal-900/40 dark:text-teal-400">
                         <i class="fa-solid fa-desktop"></i>
                     </div>
-                    <h3 class="lang-text text-xl font-bold text-slate-900 mb-4" data-it="Frontend" data-en="Frontend">Frontend</h3>
+                    <h3 class="lang-text text-xl font-bold text-slate-900 mb-4 dark:text-white" data-it="Frontend" data-en="Frontend">Frontend</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-angular text-red-600 mr-1"></i> Angular</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-vuejs text-green-500 mr-1"></i> Vue.js</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-js text-yellow-500 mr-1"></i> JavaScript</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-blue-600">TS TypeScript</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-html5 text-orange-500 mr-1"></i> HTML5</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-css3-alt text-blue-500 mr-1"></i> CSS3</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200"><i class="fa-brands fa-angular text-red-600 mr-1 dark:text-red-400"></i> Angular</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200"><i class="fa-brands fa-vuejs text-green-500 mr-1"></i> Vue.js</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200"><i class="fa-brands fa-js text-yellow-500 mr-1"></i> JavaScript</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-blue-600 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200 dark:text-blue-400">TS TypeScript</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200"><i class="fa-brands fa-html5 text-orange-500 mr-1"></i> HTML5</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200"><i class="fa-brands fa-css3-alt text-blue-500 mr-1"></i> CSS3</span>
                     </div>
                 </div>
 
                 <!-- Categoria 2: Backend -->
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100">
-                    <div class="w-12 h-12 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center text-2xl mb-4">
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 dark:bg-slate-900 dark:border-slate-800">
+                    <div class="w-12 h-12 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center text-2xl mb-4 dark:bg-orange-900/40 dark:text-orange-400">
                         <i class="fa-solid fa-server"></i>
                     </div>
-                    <h3 class="lang-text text-xl font-bold text-slate-900 mb-4" data-it="Backend" data-en="Backend">Backend</h3>
+                    <h3 class="lang-text text-xl font-bold text-slate-900 mb-4 dark:text-white" data-it="Backend" data-en="Backend">Backend</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-java text-orange-500 mr-1"></i> Java</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-green-600">Spring Boot</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-node-js text-green-500 mr-1"></i> Node.js</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-slate-600">Express</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-blue-500">REST APIs</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200"><i class="fa-brands fa-java text-orange-500 mr-1"></i> Java</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-green-600 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200 dark:text-green-400">Spring Boot</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200"><i class="fa-brands fa-node-js text-green-500 mr-1"></i> Node.js</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-slate-600 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200 dark:text-slate-300">Express</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-blue-500 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200">REST APIs</span>
                     </div>
                 </div>
 
                 <!-- Categoria 3: Cloud, Database & Tools -->
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100">
-                    <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-2xl mb-4">
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 dark:bg-slate-900 dark:border-slate-800">
+                    <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-2xl mb-4 dark:bg-blue-900/40 dark:text-blue-400">
                         <i class="fa-solid fa-cloud"></i>
                     </div>
-                    <h3 class="lang-text text-xl font-bold text-slate-900 mb-4" data-it="Cloud, Dati & Tools" data-en="Cloud, Data & Tools">Cloud, Dati & Tools</h3>
+                    <h3 class="lang-text text-xl font-bold text-slate-900 mb-4 dark:text-white" data-it="Cloud, Dati & Tools" data-en="Cloud, Data & Tools">Cloud, Dati & Tools</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-solid fa-database text-blue-500 mr-1"></i> SQL</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-slate-600">MariaDB</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-solid fa-leaf text-green-500 mr-1"></i> MongoDB</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-aws text-orange-500 mr-1"></i> AWS</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-google text-blue-500 mr-1"></i> Google Cloud</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-docker text-blue-600 mr-1"></i> Docker</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm"><i class="fa-brands fa-git-alt text-orange-600 mr-1"></i> Git</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-purple-600">Magnolia CMS</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200"><i class="fa-solid fa-database text-blue-500 mr-1"></i> SQL</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-slate-600 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200 dark:text-slate-300">MariaDB</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200"><i class="fa-solid fa-leaf text-green-500 mr-1"></i> MongoDB</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200"><i class="fa-brands fa-aws text-orange-500 mr-1"></i> AWS</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200"><i class="fa-brands fa-google text-blue-500 mr-1"></i> Google Cloud</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200"><i class="fa-brands fa-docker text-blue-600 mr-1 dark:text-blue-400"></i> Docker</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200"><i class="fa-brands fa-git-alt text-orange-600 mr-1 dark:text-orange-400"></i> Git</span>
+                        <span class="px-3 py-1 bg-white border border-slate-200 text-slate-700 rounded-full text-sm font-medium shadow-sm text-purple-600 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200 dark:text-purple-400">Magnolia CMS</span>
                     </div>
                 </div>
             </div>
@@ -182,36 +198,36 @@
     </section>
 
     <!-- SEZIONE ESPERIENZA & FORMAZIONE -->
-    <section id="experience" class="py-20 bg-slate-50">
+    <section id="experience" class="py-20 bg-slate-50 dark:bg-slate-950">
         <div class="max-w-6xl mx-auto px-4 sm:px-8">
             <div class="mb-12">
-                <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3">
+                <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3 dark:text-white">
                     <i class="fa-solid fa-briefcase text-primary-500"></i> <span class="lang-text" data-it="Esperienza e Formazione" data-en="Experience & Education">Esperienza e Formazione</span>
                 </h2>
-                <p class="lang-text text-slate-500 mt-2" data-it="Il mio percorso professionale sul campo e i traguardi accademici." data-en="My professional journey in the field and academic achievements.">Il mio percorso professionale sul campo e i traguardi accademici.</p>
+                <p class="lang-text text-slate-500 mt-2 dark:text-slate-400" data-it="Il mio percorso professionale sul campo e i traguardi accademici." data-en="My professional journey in the field and academic achievements.">Il mio percorso professionale sul campo e i traguardi accademici.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <!-- Colonna Sinistra: Lavoro -->
                 <div>
-                    <h3 class="lang-text text-xl font-bold text-slate-800 mb-6 border-b border-slate-200 pb-2" data-it="Esperienza Lavorativa" data-en="Work Experience">Esperienza Lavorativa</h3>
+                    <h3 class="lang-text text-xl font-bold text-slate-800 mb-6 border-b border-slate-200 pb-2 dark:text-slate-100 dark:border-slate-800" data-it="Esperienza Lavorativa" data-en="Work Experience">Esperienza Lavorativa</h3>
 
-                    <div class="relative pl-6 border-l-2 border-slate-200 space-y-8">
+                    <div class="relative pl-6 border-l-2 border-slate-200 space-y-8 dark:border-slate-800">
 
                         <!-- Job 1: jls digital ag -->
                         <div class="relative">
-                            <div class="absolute -left-[33px] top-4 w-4 h-4 rounded-full bg-primary-500 ring-4 ring-slate-50"></div>
-                            <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                                <span class="lang-text text-sm font-bold text-primary-600 mb-2 block" data-it="Mag 2022 - Presente" data-en="May 2022 - Present">Mag 2022 - Presente</span>
+                            <div class="absolute -left-[33px] top-4 w-4 h-4 rounded-full bg-primary-500 ring-4 ring-slate-50 dark:ring-slate-950"></div>
+                            <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow dark:bg-slate-900 dark:border-slate-800">
+                                <span class="lang-text text-sm font-bold text-primary-600 mb-2 block dark:text-primary-400" data-it="Mag 2022 - Presente" data-en="May 2022 - Present">Mag 2022 - Presente</span>
 
                                 <!-- Intestazione con Logo -->
                                 <div class="flex items-start gap-4 mb-1">
-                                    <div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center shrink-0 border border-slate-200">
+                                    <div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center shrink-0 border border-slate-200 dark:bg-slate-800 dark:border-slate-800">
                                         <i class="fa-solid fa-laptop-code text-primary-500"></i> <!-- Sostituisci con <img> del logo jls -->
                                     </div>
                                     <div>
-                                        <h4 class="text-lg font-bold text-slate-900 leading-tight">Full Stack Developer</h4>
-                                        <div class="text-sm text-slate-500 font-medium mt-1">jls digital ag <span class="lang-text text-slate-400 font-normal" data-it="&bull; Freelance (Da remoto)" data-en="&bull; Freelance (Remote)">&bull; Freelance (Da remoto)</span></div>
+                                        <h4 class="text-lg font-bold text-slate-900 leading-tight dark:text-white">Full Stack Developer</h4>
+                                        <div class="text-sm text-slate-500 font-medium mt-1 dark:text-slate-400">jls digital ag <span class="lang-text text-slate-400 font-normal" data-it="&bull; Freelance (Da remoto)" data-en="&bull; Freelance (Remote)">&bull; Freelance (Da remoto)</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -219,18 +235,18 @@
 
                         <!-- Job 2: Lavoratore Autonomo -->
                         <div class="relative">
-                            <div class="absolute -left-[33px] top-4 w-4 h-4 rounded-full bg-sky-400 ring-4 ring-slate-50"></div>
-                            <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                                <span class="lang-text text-sm font-bold text-sky-600 mb-2 block" data-it="Apr 2021 - Presente" data-en="Apr 2021 - Present">Apr 2021 - Presente</span>
+                            <div class="absolute -left-[33px] top-4 w-4 h-4 rounded-full bg-sky-400 ring-4 ring-slate-50 dark:ring-slate-950"></div>
+                            <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow dark:bg-slate-900 dark:border-slate-800">
+                                <span class="lang-text text-sm font-bold text-sky-600 mb-2 block dark:text-sky-400" data-it="Apr 2021 - Presente" data-en="Apr 2021 - Present">Apr 2021 - Presente</span>
 
                                 <!-- Intestazione con Logo -->
                                 <div class="flex items-start gap-4 mb-1">
-                                    <div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center shrink-0 border border-slate-200">
+                                    <div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center shrink-0 border border-slate-200 dark:bg-slate-800 dark:border-slate-800">
                                         <i class="fa-solid fa-user-tie text-sky-500"></i> <!-- Logo Autonomo -->
                                     </div>
                                     <div>
-                                        <h4 class="text-lg font-bold text-slate-900 leading-tight">Full Stack Developer</h4>
-                                        <div class="text-sm text-slate-500 font-medium mt-1"><span class="lang-text" data-it="Lavoratore Autonomo" data-en="Self-employed">Lavoratore Autonomo</span> <span class="text-slate-400 font-normal">&bull; Freelance</span></div>
+                                        <h4 class="text-lg font-bold text-slate-900 leading-tight dark:text-white">Full Stack Developer</h4>
+                                        <div class="text-sm text-slate-500 font-medium mt-1 dark:text-slate-400"><span class="lang-text" data-it="Lavoratore Autonomo" data-en="Self-employed">Lavoratore Autonomo</span> <span class="text-slate-400 font-normal">&bull; Freelance</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -238,18 +254,18 @@
 
                         <!-- Job 3: Like a Coffee -->
                         <div class="relative">
-                            <div class="absolute -left-[33px] top-4 w-4 h-4 rounded-full bg-slate-300 ring-4 ring-slate-50"></div>
-                            <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                                <span class="lang-text text-sm font-bold text-slate-500 mb-2 block" data-it="Set 2019 - Presente" data-en="Sep 2019 - Present">Set 2019 - Presente</span>
+                            <div class="absolute -left-[33px] top-4 w-4 h-4 rounded-full bg-slate-300 ring-4 ring-slate-50 dark:bg-slate-600 dark:ring-slate-950"></div>
+                            <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow dark:bg-slate-900 dark:border-slate-800">
+                                <span class="lang-text text-sm font-bold text-slate-500 mb-2 block dark:text-slate-400" data-it="Set 2019 - Presente" data-en="Sep 2019 - Present">Set 2019 - Presente</span>
 
                                 <!-- Intestazione con Logo -->
                                 <div class="flex items-start gap-4 mb-1">
-                                    <div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center shrink-0 border border-slate-200">
-                                        <i class="fa-solid fa-mug-hot text-amber-600"></i> <!-- Sostituisci con <img> del logo Like a Coffee -->
+                                    <div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center shrink-0 border border-slate-200 dark:bg-slate-800 dark:border-slate-800">
+                                        <i class="fa-solid fa-mug-hot text-amber-600 dark:text-amber-400"></i> <!-- Sostituisci con <img> del logo Like a Coffee -->
                                     </div>
                                     <div>
-                                        <h4 class="text-lg font-bold text-slate-900 leading-tight">Junior Developer</h4>
-                                        <div class="text-sm text-slate-500 font-medium mt-1">Like a Coffee</div>
+                                        <h4 class="text-lg font-bold text-slate-900 leading-tight dark:text-white">Junior Developer</h4>
+                                        <div class="text-sm text-slate-500 font-medium mt-1 dark:text-slate-400">Like a Coffee</div>
                                     </div>
                                 </div>
                             </div>
@@ -263,21 +279,21 @@
 
                     <!-- Blocco Formazione -->
                     <div>
-                        <h3 class="lang-text text-xl font-bold text-slate-800 mb-6 border-b border-slate-200 pb-2" data-it="Istruzione" data-en="Education">Istruzione</h3>
+                        <h3 class="lang-text text-xl font-bold text-slate-800 mb-6 border-b border-slate-200 pb-2 dark:text-slate-100 dark:border-slate-800" data-it="Istruzione" data-en="Education">Istruzione</h3>
 
-                        <div class="relative pl-6 border-l-2 border-slate-200 space-y-8">
+                        <div class="relative pl-6 border-l-2 border-slate-200 space-y-8 dark:border-slate-800">
 
                             <!-- Magistrale -->
                             <div class="relative">
-                                <div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-blue-500 ring-4 ring-slate-50"></div>
-                                <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm relative overflow-hidden">
+                                <div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-blue-500 ring-4 ring-slate-50 dark:ring-slate-950"></div>
+                                <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm relative overflow-hidden dark:bg-slate-900 dark:border-slate-800">
                                     <div class="absolute top-0 right-0 p-4 opacity-5 text-blue-500 text-5xl">
                                         <i class="fa-solid fa-graduation-cap"></i>
                                     </div>
-                                    <span class="lang-text text-sm font-bold text-blue-600 mb-1 block" data-it="2018 - 2020" data-en="2018 - 2020">2018 - 2020</span>
-                                    <h4 class="lang-text text-lg font-bold text-slate-900" data-it="Laurea Magistrale in Cloud Computing" data-en="Master's Degree in Cloud Computing">Laurea Magistrale in Cloud Computing</h4>
-                                    <div class="lang-text text-sm text-slate-500 mb-3 font-medium" data-it="Università degli Studi di Salerno (UNISA)" data-en="University of Salerno (UNISA)">Università degli Studi di Salerno (UNISA)</div>
-                                    <p class="lang-text text-slate-600 text-sm leading-relaxed relative z-10" data-it="Specializzazione in architetture distribuite, servizi cloud, sicurezza e scalabilità dei sistemi." data-en="Specialization in distributed architectures, cloud services, security, and system scalability.">
+                                    <span class="lang-text text-sm font-bold text-blue-600 mb-1 block dark:text-blue-400" data-it="2018 - 2020" data-en="2018 - 2020">2018 - 2020</span>
+                                    <h4 class="lang-text text-lg font-bold text-slate-900 dark:text-white" data-it="Laurea Magistrale in Cloud Computing" data-en="Master's Degree in Cloud Computing">Laurea Magistrale in Cloud Computing</h4>
+                                    <div class="lang-text text-sm text-slate-500 mb-3 font-medium dark:text-slate-400" data-it="Università degli Studi di Salerno (UNISA)" data-en="University of Salerno (UNISA)">Università degli Studi di Salerno (UNISA)</div>
+                                    <p class="lang-text text-slate-600 text-sm leading-relaxed relative z-10 dark:text-slate-300" data-it="Specializzazione in architetture distribuite, servizi cloud, sicurezza e scalabilità dei sistemi." data-en="Specialization in distributed architectures, cloud services, security, and system scalability.">
                                         Specializzazione in architetture distribuite, servizi cloud, sicurezza e scalabilità dei sistemi.
                                     </p>
                                 </div>
@@ -285,12 +301,12 @@
 
                             <!-- Triennale -->
                             <div class="relative">
-                                <div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-slate-300 ring-4 ring-slate-50"></div>
-                                <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm relative overflow-hidden">
-                                    <span class="lang-text text-sm font-bold text-slate-500 mb-1 block" data-it="2015 - 2018" data-en="2015 - 2018">2015 - 2018</span>
-                                    <h4 class="lang-text text-lg font-bold text-slate-900" data-it="Laurea Triennale in Informatica" data-en="Bachelor's Degree in Computer Science">Laurea Triennale in Informatica</h4>
-                                    <div class="lang-text text-sm text-slate-500 mb-3 font-medium" data-it="Università degli Studi di Salerno (UNISA)" data-en="University of Salerno (UNISA)">Università degli Studi di Salerno (UNISA)</div>
-                                    <p class="lang-text text-slate-600 text-sm leading-relaxed relative z-10" data-it="Fondamenti di programmazione, ingegneria del software, basi di dati e sistemi operativi." data-en="Fundamentals of programming, software engineering, databases, and operating systems.">
+                                <div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-slate-300 ring-4 ring-slate-50 dark:bg-slate-600 dark:ring-slate-950"></div>
+                                <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm relative overflow-hidden dark:bg-slate-900 dark:border-slate-800">
+                                    <span class="lang-text text-sm font-bold text-slate-500 mb-1 block dark:text-slate-400" data-it="2015 - 2018" data-en="2015 - 2018">2015 - 2018</span>
+                                    <h4 class="lang-text text-lg font-bold text-slate-900 dark:text-white" data-it="Laurea Triennale in Informatica" data-en="Bachelor's Degree in Computer Science">Laurea Triennale in Informatica</h4>
+                                    <div class="lang-text text-sm text-slate-500 mb-3 font-medium dark:text-slate-400" data-it="Università degli Studi di Salerno (UNISA)" data-en="University of Salerno (UNISA)">Università degli Studi di Salerno (UNISA)</div>
+                                    <p class="lang-text text-slate-600 text-sm leading-relaxed relative z-10 dark:text-slate-300" data-it="Fondamenti di programmazione, ingegneria del software, basi di dati e sistemi operativi." data-en="Fundamentals of programming, software engineering, databases, and operating systems.">
                                         Fondamenti di programmazione, ingegneria del software, basi di dati e sistemi operativi.
                                     </p>
                                 </div>
@@ -303,172 +319,186 @@
             </div> <!-- Chiusura Grid a due colonne -->
 
             <!-- NUOVO BLOCCO CERTIFICAZIONI E CORSI A LARGHEZZA INTERA -->
-            <div class="mt-16 border-t border-slate-200 pt-12">
+            <div class="mt-16 border-t border-slate-200 pt-12 dark:border-slate-800">
                 <div class="mb-8">
-                    <h3 class="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                    <h3 class="text-2xl font-bold text-slate-900 flex items-center gap-2 dark:text-white">
                         <i class="fa-solid fa-certificate text-amber-500"></i>
                         <span class="lang-text" data-it="Formazione Continua" data-en="Continuous Learning">Formazione Continua</span>
                     </h3>
                 </div>
 
-                <!-- SEZIONE 1: CERTIFICAZIONI UFFICIALI -->
-                <h4 class="text-lg font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2 lang-text" data-it="Certificazioni Ufficiali" data-en="Official Certifications">Certificazioni Ufficiali</h4>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+                <!-- Schede: Certificazioni / Attestati -->
+                <div class="flex sm:inline-flex md:hidden w-full sm:w-auto bg-slate-100 rounded-lg p-1 text-sm font-semibold text-slate-500 shadow-inner mb-6 dark:bg-slate-800 dark:text-slate-400" role="tablist" aria-label="Formazione continua">
+                    <button type="button" role="tab" id="tab-cert" aria-controls="panel-cert" aria-selected="true" class="cert-tab flex-1 sm:flex-none px-4 py-2 rounded-md transition-all">
+                        <span class="lang-text" data-it="Certificazioni ufficiali" data-en="Official certifications">Certificazioni ufficiali</span> <span class="text-slate-400 font-medium">8</span>
+                    </button>
+                    <button type="button" role="tab" id="tab-att" aria-controls="panel-att" aria-selected="false" tabindex="-1" class="cert-tab flex-1 sm:flex-none px-4 py-2 rounded-md transition-all">
+                        <span class="lang-text" data-it="Partecipazioni e conferenze" data-en="Attendance &amp; conferences">Partecipazioni e conferenze</span> <span class="text-slate-400 font-medium">4</span>
+                    </button>
+                </div>
+
+                <!-- SEZIONE 1: CERTIFICAZIONI UFFICIALI (su smartphone: scheda) -->
+                <h4 class="hidden md:block text-lg font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2 lang-text dark:text-slate-100 dark:border-slate-800" data-it="Certificazioni Ufficiali" data-en="Official Certifications">Certificazioni Ufficiali</h4>
+                <div id="panel-cert" role="tabpanel" aria-labelledby="tab-cert" class="cert-panel grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:mb-10">
 
                     <!-- Certificato 1: Magnolia CMS Project -->
-                    <a href="./assets/certifications/magnolia_developer.webp" onclick="openCertModal('Magnolia Certified Project Developer', './assets/certifications/magnolia_developer.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
+                    <a href="./assets/certifications/magnolia_developer.webp" onclick="openCertModal('Magnolia Certified Project Developer', './assets/certifications/magnolia_developer.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:bg-slate-900 dark:border-slate-800">
                         <div class="absolute -right-4 -bottom-4 text-emerald-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-leaf"></i></div>
-                        <span class="text-xs font-bold text-emerald-600 mb-1 block lang-text" data-it="Mag 2026" data-en="May 2026">Mag 2026</span>
-                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">Magnolia Certified Project Developer</h4>
-                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">Magnolia CMS</div>
+                        <span class="text-xs font-bold text-emerald-600 mb-1 block lang-text dark:text-emerald-400" data-it="Mag 2026" data-en="May 2026">Mag 2026</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10 dark:text-white">Magnolia Certified Project Developer</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3 dark:text-slate-400">Magnolia CMS</div>
                         <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
                     </a>
 
                     <!-- Certificato 2: Magnolia CMS Light -->
-                    <a href="./assets/certifications/magnolia_light.webp" onclick="openCertModal('Magnolia Certified Light Developer', './assets/certifications/magnolia_light.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
+                    <a href="./assets/certifications/magnolia_light.webp" onclick="openCertModal('Magnolia Certified Light Developer', './assets/certifications/magnolia_light.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:bg-slate-900 dark:border-slate-800">
                         <div class="absolute -right-4 -bottom-4 text-emerald-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-leaf"></i></div>
-                        <span class="text-xs font-bold text-emerald-600 mb-1 block lang-text" data-it="Feb 2026" data-en="Feb 2026">Feb 2026</span>
-                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">Magnolia Certified Light Developer</h4>
-                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">Magnolia CMS</div>
+                        <span class="text-xs font-bold text-emerald-600 mb-1 block lang-text dark:text-emerald-400" data-it="Feb 2026" data-en="Feb 2026">Feb 2026</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10 dark:text-white">Magnolia Certified Light Developer</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3 dark:text-slate-400">Magnolia CMS</div>
                         <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
                     </a>
 
                     <!-- Certificato 3: GCP ML -->
-                    <a href="./assets/certifications/gcp.webp" onclick="openCertModal('GCP Big Data and Machine Learning', './assets/certifications/gcp.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-blue-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
+                    <a href="./assets/certifications/gcp.webp" onclick="openCertModal('GCP Big Data and Machine Learning', './assets/certifications/gcp.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-blue-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:bg-slate-900 dark:border-slate-800">
                         <div class="absolute -right-4 -bottom-4 text-blue-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-brands fa-google"></i></div>
-                        <span class="text-xs font-bold text-blue-600 mb-1 block lang-text" data-it="Mar 2020" data-en="Mar 2020">Mar 2020</span>
-                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">GCP Big Data and Machine Learning</h4>
-                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">Coursera</div>
+                        <span class="text-xs font-bold text-blue-600 mb-1 block lang-text dark:text-blue-400" data-it="Mar 2020" data-en="Mar 2020">Mar 2020</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10 dark:text-white">GCP Big Data and Machine Learning</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3 dark:text-slate-400">Coursera</div>
                         <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
                     </a>
 
                     <!-- Certificato 4: Deep Neural Networks -->
-                    <a href="./assets/certifications/improving_deep_neural_networks.webp" onclick="openCertModal('Improving Deep Neural Networks', './assets/certifications/improving_deep_neural_networks.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
+                    <a href="./assets/certifications/improving_deep_neural_networks.webp" onclick="openCertModal('Improving Deep Neural Networks', './assets/certifications/improving_deep_neural_networks.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:bg-slate-900 dark:border-slate-800">
                         <div class="absolute -right-4 -bottom-4 text-indigo-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-network-wired"></i></div>
-                        <span class="text-xs font-bold text-indigo-600 mb-1 block lang-text" data-it="Gen 2020" data-en="Jan 2020">Gen 2020</span>
-                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">Improving Deep Neural Networks</h4>
-                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">Coursera</div>
+                        <span class="text-xs font-bold text-indigo-600 mb-1 block lang-text dark:text-indigo-400" data-it="Gen 2020" data-en="Jan 2020">Gen 2020</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10 dark:text-white">Improving Deep Neural Networks</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3 dark:text-slate-400">Coursera</div>
                         <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
                     </a>
 
                     <!-- Certificato 5: Structuring ML Projects -->
-                    <a href="./assets/certifications/structuring_machin_learning_projects.webp" onclick="openCertModal('Structuring ML Projects', './assets/certifications/structuring_machin_learning_projects.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
+                    <a href="./assets/certifications/structuring_machin_learning_projects.webp" onclick="openCertModal('Structuring ML Projects', './assets/certifications/structuring_machin_learning_projects.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:bg-slate-900 dark:border-slate-800">
                         <div class="absolute -right-4 -bottom-4 text-indigo-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-sitemap"></i></div>
-                        <span class="text-xs font-bold text-indigo-600 mb-1 block lang-text" data-it="Gen 2020" data-en="Jan 2020">Gen 2020</span>
-                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">Structuring ML Projects</h4>
-                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">Coursera</div>
+                        <span class="text-xs font-bold text-indigo-600 mb-1 block lang-text dark:text-indigo-400" data-it="Gen 2020" data-en="Jan 2020">Gen 2020</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10 dark:text-white">Structuring ML Projects</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3 dark:text-slate-400">Coursera</div>
                         <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
                     </a>
 
                     <!-- Certificato 6: Neural Networks & Deep Learning -->
-                    <a href="./assets/certifications/neural_networks_and_deep_learning.webp" onclick="openCertModal('Neural Networks and Deep Learning', './assets/certifications/neural_networks_and_deep_learning.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-purple-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
+                    <a href="./assets/certifications/neural_networks_and_deep_learning.webp" onclick="openCertModal('Neural Networks and Deep Learning', './assets/certifications/neural_networks_and_deep_learning.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-purple-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:bg-slate-900 dark:border-slate-800">
                         <div class="absolute -right-4 -bottom-4 text-purple-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-brain"></i></div>
-                        <span class="text-xs font-bold text-purple-600 mb-1 block lang-text" data-it="Dic 2019" data-en="Dec 2019">Dic 2019</span>
-                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">Neural Networks and Deep Learning</h4>
-                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">Coursera</div>
+                        <span class="text-xs font-bold text-purple-600 mb-1 block lang-text dark:text-purple-400" data-it="Dic 2019" data-en="Dec 2019">Dic 2019</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10 dark:text-white">Neural Networks and Deep Learning</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3 dark:text-slate-400">Coursera</div>
                         <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
                     </a>
 
                     <!-- Certificato 7: Python Data Science -->
-                    <a href="./assets/certifications/python_for_data-science.webp" onclick="openCertModal('Python for Data Science Bootcamp', './assets/certifications/python_for_data-science.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-yellow-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
+                    <a href="./assets/certifications/python_for_data-science.webp" onclick="openCertModal('Python for Data Science Bootcamp', './assets/certifications/python_for_data-science.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-yellow-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:bg-slate-900 dark:border-slate-800">
                         <div class="absolute -right-4 -bottom-4 text-yellow-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-brands fa-python"></i></div>
-                        <span class="text-xs font-bold text-yellow-600 mb-1 block lang-text" data-it="Ott 2019" data-en="Oct 2019">Ott 2019</span>
-                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">Python for Data Science Bootcamp</h4>
-                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">Udemy</div>
+                        <span class="text-xs font-bold text-yellow-600 mb-1 block lang-text dark:text-yellow-400" data-it="Ott 2019" data-en="Oct 2019">Ott 2019</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10 dark:text-white">Python for Data Science Bootcamp</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3 dark:text-slate-400">Udemy</div>
                         <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
                     </a>
 
                     <!-- Certificato 8: iOS Foundation Program -->
-                    <a href="./assets/certifications/ios.webp" onclick="openCertModal('iOS Foundation Program', './assets/certifications/ios.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-slate-800 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
-                        <div class="absolute -right-4 -bottom-4 text-slate-800/5 text-6xl group-hover:scale-110 transition-transform"><i class="fa-brands fa-apple"></i></div>
-                        <span class="text-xs font-bold text-slate-600 mb-1 block lang-text" data-it="Gen 2019 - Feb 2019" data-en="Jan 2019 - Feb 2019">Gen 2019 - Feb 2019</span>
-                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">iOS Foundation Program</h4>
-                        <div class="lang-text text-xs text-slate-500 font-medium relative z-10 mb-3" data-it="Università degli Studi di Salerno" data-en="University of Salerno">Università degli Studi di Salerno</div>
+                    <a href="./assets/certifications/ios.webp" onclick="openCertModal('iOS Foundation Program', './assets/certifications/ios.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-slate-800 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:bg-slate-900 dark:border-slate-800 dark:hover:border-slate-500">
+                        <div class="absolute -right-4 -bottom-4 text-slate-800/5 text-6xl group-hover:scale-110 transition-transform dark:text-white/5"><i class="fa-brands fa-apple"></i></div>
+                        <span class="text-xs font-bold text-slate-600 mb-1 block lang-text dark:text-slate-300" data-it="Gen 2019 - Feb 2019" data-en="Jan 2019 - Feb 2019">Gen 2019 - Feb 2019</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10 dark:text-white">iOS Foundation Program</h4>
+                        <div class="lang-text text-xs text-slate-500 font-medium relative z-10 mb-3 dark:text-slate-400" data-it="Università degli Studi di Salerno" data-en="University of Salerno">Università degli Studi di Salerno</div>
                         <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
                     </a>
                 </div>
 
-                <!-- SEZIONE 2: ATTESTATI E CONFERENZE -->
-                <h4 class="text-lg font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2 lang-text" data-it="Attestati di Partecipazione e Conferenze" data-en="Certificates of Attendance & Conferences">Attestati di Partecipazione e Conferenze</h4>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- SEZIONE 2: ATTESTATI E CONFERENZE (su smartphone: scheda) -->
+                <h4 class="hidden md:block text-lg font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2 lang-text dark:text-slate-100 dark:border-slate-800" data-it="Attestati di Partecipazione e Conferenze" data-en="Certificates of Attendance &amp; Conferences">Attestati di Partecipazione e Conferenze</h4>
+                <div id="panel-att" role="tabpanel" aria-labelledby="tab-att" class="cert-panel grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
                     <!-- Attestato 1: DevSecOps -->
-                    <a href="./assets/certifications/devsecops.webp" onclick="openCertModal('DevSecOps Bootcamp Training', './assets/certifications/devsecops.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-red-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
+                    <a href="./assets/certifications/devsecops.webp" onclick="openCertModal('DevSecOps Bootcamp Training', './assets/certifications/devsecops.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-red-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:bg-slate-900 dark:border-slate-800">
                         <div class="absolute -right-4 -bottom-4 text-red-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-shield-halved"></i></div>
-                        <span class="text-xs font-bold text-red-600 mb-1 block lang-text" data-it="Ago 2024" data-en="Aug 2024">Ago 2024</span>
-                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">DevSecOps Bootcamp Training</h4>
-                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">United Security Providers AG</div>
+                        <span class="text-xs font-bold text-red-600 mb-1 block lang-text dark:text-red-400" data-it="Ago 2024" data-en="Aug 2024">Ago 2024</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10 dark:text-white">DevSecOps Bootcamp Training</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3 dark:text-slate-400">United Security Providers AG</div>
                         <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
                     </a>
 
                     <!-- Attestato 2: MLOps BrightTALK -->
-                    <a href="./assets/certifications/bright_talk_2.webp" onclick="openCertModal('Machine Learning Operations (MLOps): Deploy at Scale', './assets/certifications/bright_talk_2.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-orange-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
+                    <a href="./assets/certifications/bright_talk_2.webp" onclick="openCertModal('Machine Learning Operations (MLOps): Deploy at Scale', './assets/certifications/bright_talk_2.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-orange-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:bg-slate-900 dark:border-slate-800">
                         <div class="absolute -right-4 -bottom-4 text-orange-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-server"></i></div>
-                        <span class="text-xs font-bold text-orange-600 mb-1 block lang-text" data-it="Set 2019" data-en="Sep 2019">Set 2019</span>
-                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">Machine Learning Operations (MLOps): Deploy at Scale</h4>
-                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">BrightTALK</div>
+                        <span class="text-xs font-bold text-orange-600 mb-1 block lang-text dark:text-orange-400" data-it="Set 2019" data-en="Sep 2019">Set 2019</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10 dark:text-white">Machine Learning Operations (MLOps): Deploy at Scale</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3 dark:text-slate-400">BrightTALK</div>
                         <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
                     </a>
 
                     <!-- Attestato 3: AI Program BrightTALK -->
-                    <a href="./assets/certifications/bright_talk_1.webp" onclick="openCertModal('How to start and progress with an AI program', './assets/certifications/bright_talk_1.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-teal-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
+                    <a href="./assets/certifications/bright_talk_1.webp" onclick="openCertModal('How to start and progress with an AI program', './assets/certifications/bright_talk_1.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-teal-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:bg-slate-900 dark:border-slate-800">
                         <div class="absolute -right-4 -bottom-4 text-teal-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-robot"></i></div>
-                        <span class="text-xs font-bold text-teal-600 mb-1 block lang-text" data-it="Set 2019" data-en="Sep 2019">Set 2019</span>
-                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">How to start and progress with an AI program</h4>
-                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">BrightTALK</div>
+                        <span class="text-xs font-bold text-teal-600 mb-1 block lang-text dark:text-teal-400" data-it="Set 2019" data-en="Sep 2019">Set 2019</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10 dark:text-white">How to start and progress with an AI program</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3 dark:text-slate-400">BrightTALK</div>
                         <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
                     </a>
 
-                    <a href="./assets/certifications/impact_school.webp" onclick="openCertModal('Artificial Intelligence', './assets/certifications/impact_school.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-teal-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
+                    <a href="./assets/certifications/impact_school.webp" onclick="openCertModal('Artificial Intelligence', './assets/certifications/impact_school.webp'); return false;" aria-haspopup="dialog" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-teal-400 hover:shadow-md transition-all relative overflow-hidden group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:bg-slate-900 dark:border-slate-800">
                         <div class="absolute -right-4 -bottom-4 text-teal-500/10 text-6xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-robot"></i></div>
-                        <span class="text-xs font-bold text-teal-600 mb-1 block lang-text" data-it="Set 2017" data-en="Sep 2017">Set 2017</span>
-                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10">Artificial Intelligence</h4>
-                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3">Impact School</div>
+                        <span class="text-xs font-bold text-teal-600 mb-1 block lang-text dark:text-teal-400" data-it="Set 2017" data-en="Sep 2017">Set 2017</span>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight mb-1 relative z-10 dark:text-white">Artificial Intelligence</h4>
+                        <div class="text-xs text-slate-500 font-medium relative z-10 mb-3 dark:text-slate-400">Impact School</div>
                         <div class="text-[10px] font-bold text-slate-400 uppercase flex items-center gap-1"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="lang-text" data-it="Mostra attestato" data-en="Show certificate">Mostra attestato</span></div>
                     </a>
 
                 </div>
+
+                <button type="button" id="certMore" aria-expanded="false" class="md:hidden mt-4 w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-slate-200 bg-white text-sm font-medium text-primary-600 hover:bg-primary-50 hover:border-primary-200 transition-colors dark:border-slate-800 dark:bg-slate-900 dark:text-primary-400 dark:hover:bg-slate-800 dark:hover:border-primary-700">
+                    <span id="certMoreText"></span> <i class="fa-solid fa-chevron-down text-xs transition-transform" id="certMoreIcon" aria-hidden="true"></i>
+                </button>
             </div>
 
         </div>
     </section>
 
     <!-- NUOVA SEZIONE: PROGETTI WEB -->
-    <section id="projects" class="py-20 bg-white border-t border-slate-100">
+    <section id="projects" class="py-20 bg-white border-t border-slate-100 dark:bg-slate-950 dark:border-slate-800">
         <div class="max-w-6xl mx-auto px-4 sm:px-8">
             <div class="mb-12">
-                <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3">
+                <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3 dark:text-white">
                     <i class="fa-solid fa-laptop-code text-primary-500"></i> <span class="lang-text" data-it="Progetti Web" data-en="Web Projects">Progetti Web</span>
                 </h2>
-                <p class="lang-text text-slate-500 mt-2" data-it="Siti realizzati per associazioni e attività locali." data-en="Websites built for local associations and businesses.">Siti realizzati per associazioni e attività locali.</p>
+                <p class="lang-text text-slate-500 mt-2 dark:text-slate-400" data-it="Siti realizzati per associazioni e attività locali." data-en="Websites built for local associations and businesses.">Siti realizzati per associazioni e attività locali.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Progetto 1: LA PAMPNA -->
-                <a href="https://www.lapampna.it" target="_blank" rel="noopener" class="card-hover group block bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col sm:flex-row">
-                    <div class="w-full sm:w-48 h-48 sm:h-auto bg-slate-100 relative overflow-hidden shrink-0">
+                <a href="https://www.lapampna.it" target="_blank" rel="noopener" class="card-hover group block bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col sm:flex-row dark:bg-slate-900 dark:border-slate-800">
+                    <div class="w-full sm:w-48 h-48 sm:h-auto bg-slate-100 relative overflow-hidden shrink-0 dark:bg-slate-800">
                         <img src="./assets/images/progetti/lapampna.webp" width="800" height="500" alt="Homepage del sito La Pampna" data-alt-it="Homepage del sito La Pampna" data-alt-en="Homepage of the La Pampna website" loading="lazy" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-6 flex flex-col justify-center flex-1 min-w-0">
                         <div class="lang-text text-xs font-bold text-slate-400 uppercase tracking-wider mb-2" data-it="WordPress • Editoria" data-en="WordPress • Publishing">WordPress • Editoria</div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary-600 transition-colors">La Pampna</h3>
-                        <p class="lang-text text-slate-600 text-sm mb-4 line-clamp-2" data-it="Il giornalino digitale di Teora, con archivio dei numeri sfogliabile online." data-en="The digital newsletter of Teora, with an archive of issues you can browse online.">Il giornalino digitale di Teora, con archivio dei numeri sfogliabile online.</p>
-                        <div class="mt-auto flex items-center gap-2 text-sm font-bold text-primary-600">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary-600 transition-colors dark:text-white dark:group-hover:text-primary-400">La Pampna</h3>
+                        <p class="lang-text text-slate-600 text-sm mb-4 line-clamp-2 dark:text-slate-300" data-it="Il giornalino digitale di Teora, con archivio dei numeri sfogliabile online." data-en="The digital newsletter of Teora, with an archive of issues you can browse online.">Il giornalino digitale di Teora, con archivio dei numeri sfogliabile online.</p>
+                        <div class="mt-auto flex items-center gap-2 text-sm font-bold text-primary-600 dark:text-primary-400">
                             <span>lapampna.it</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </div>
                     </div>
                 </a>
 
                 <!-- Progetto 2: IL NINFEO -->
-                <a href="https://www.ilninfeocentroestetico.it/" target="_blank" rel="noopener" class="card-hover group block bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col sm:flex-row">
-                    <div class="w-full sm:w-48 h-48 sm:h-auto bg-slate-100 relative overflow-hidden shrink-0">
+                <a href="https://www.ilninfeocentroestetico.it/" target="_blank" rel="noopener" class="card-hover group block bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col sm:flex-row dark:bg-slate-900 dark:border-slate-800">
+                    <div class="w-full sm:w-48 h-48 sm:h-auto bg-slate-100 relative overflow-hidden shrink-0 dark:bg-slate-800">
                         <img src="./assets/images/progetti/ilninfeo.webp" width="800" height="500" alt="Homepage del sito Il Ninfeo" data-alt-it="Homepage del sito Il Ninfeo" data-alt-en="Homepage of the Il Ninfeo website" loading="lazy" class="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-6 flex flex-col justify-center flex-1 min-w-0">
                         <div class="lang-text text-xs font-bold text-slate-400 uppercase tracking-wider mb-2" data-it="Sito vetrina • Benessere" data-en="Business website • Wellness">Sito vetrina • Benessere</div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary-600 transition-colors">Il Ninfeo</h3>
-                        <p class="lang-text text-slate-600 text-sm mb-4 line-clamp-2" data-it="Centro estetico a Teora: trattamenti, chi siamo e contatti." data-en="Beauty center in Teora: treatments, about us and contacts.">Centro estetico a Teora: trattamenti, chi siamo e contatti.</p>
-                        <div class="mt-auto flex items-center gap-2 text-sm font-bold text-primary-600">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary-600 transition-colors dark:text-white dark:group-hover:text-primary-400">Il Ninfeo</h3>
+                        <p class="lang-text text-slate-600 text-sm mb-4 line-clamp-2 dark:text-slate-300" data-it="Centro estetico a Teora: trattamenti, chi siamo e contatti." data-en="Beauty center in Teora: treatments, about us and contacts.">Centro estetico a Teora: trattamenti, chi siamo e contatti.</p>
+                        <div class="mt-auto flex items-center gap-2 text-sm font-bold text-primary-600 dark:text-primary-400">
                             <span>ilninfeocentroestetico.it</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </div>
                     </div>
@@ -478,55 +508,55 @@
     </section>
 
     <!-- NUOVA SEZIONE: BLOG E PUBBLICAZIONI -->
-    <section id="blog" class="py-20 bg-white border-t border-slate-100">
+    <section id="blog" class="py-20 bg-white border-t border-slate-100 dark:bg-slate-950 dark:border-slate-800">
         <div class="max-w-6xl mx-auto px-4 sm:px-8">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-4">
                 <div>
-                    <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3">
+                    <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3 dark:text-white">
                         <i class="fa-solid fa-pen-nib text-primary-500"></i> <span class="lang-text" data-it="Pubblicazioni e Articoli" data-en="Publications & Articles">Pubblicazioni e Articoli</span>
                     </h2>
-                    <p class="lang-text text-slate-500 mt-2" data-it="Pensieri scritti, analisi e progetti di ricerca." data-en="Written thoughts, analysis, and research projects.">Pensieri scritti, analisi e progetti di ricerca.</p>
+                    <p class="lang-text text-slate-500 mt-2 dark:text-slate-400" data-it="Pensieri scritti, analisi e progetti di ricerca." data-en="Written thoughts, analysis, and research projects.">Pensieri scritti, analisi e progetti di ricerca.</p>
                 </div>
-                <a href="blog.html" class="inline-flex items-center gap-2 text-primary-600 font-medium hover:text-primary-700 bg-primary-50 px-4 py-2 rounded-lg transition-colors">
+                <a href="blog.html" class="inline-flex items-center gap-2 text-primary-600 font-medium hover:text-primary-700 bg-primary-50 px-4 py-2 rounded-lg transition-colors dark:text-primary-400 dark:hover:text-primary-200 dark:bg-primary-900/40">
                     <span class="lang-text" data-it="Vedi tutti" data-en="View all">Vedi tutti</span> <i class="fa-solid fa-arrow-right text-sm"></i>
                 </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Article Card 1: ESEVIER (In evidenza) -->
-                <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417422014348?via%3Dihub" target="_blank" rel="noopener" class="card-hover group block bg-white border-2 border-primary-200 shadow-md rounded-2xl overflow-hidden flex flex-col sm:flex-row relative">
+                <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417422014348?via%3Dihub" target="_blank" rel="noopener" class="card-hover group block bg-white border-2 border-primary-200 shadow-md rounded-2xl overflow-hidden flex flex-col sm:flex-row relative dark:bg-slate-900 dark:border-primary-900">
                     <!-- Badge In Evidenza -->
                     <div class="absolute top-0 right-0 bg-primary-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg z-10 shadow-sm lang-text tracking-wider" data-it="RICERCA SCIENTIFICA" data-en="SCIENTIFIC RESEARCH">RICERCA SCIENTIFICA</div>
 
-                    <div class="w-full sm:w-48 h-48 sm:h-auto bg-slate-100 relative overflow-hidden shrink-0">
-                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-100 to-purple-50"></div>
+                    <div class="w-full sm:w-48 h-48 sm:h-auto bg-slate-100 relative overflow-hidden shrink-0 dark:bg-slate-800">
+                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-100 to-purple-50 dark:from-indigo-950 dark:to-slate-900"></div>
                         <div class="absolute inset-0 flex items-center justify-center text-indigo-500/40 text-6xl">
                             <i class="fa-solid fa-microchip"></i>
                         </div>
                     </div>
                     <div class="p-6 flex flex-col justify-center flex-1">
                         <div class="lang-text text-xs font-bold text-slate-400 uppercase tracking-wider mb-2" data-it="Elsevier • Luglio 2022" data-en="Elsevier • July 2022">Elsevier • Luglio 2022</div>
-                        <h3 class="text-lg leading-tight font-bold text-slate-900 mb-2 group-hover:text-primary-600 transition-colors">Adaptive talent journey: Optimization via Deep Q-Learning</h3>
-                        <p class="lang-text text-slate-600 text-sm mb-4 line-clamp-3" data-it="Un metodo innovativo basato sul Deep Q-Learning per ottimizzare il percorso di crescita dei talenti aziendali sfruttando i 'digital twin'." data-en="A novel method based on Deep Q-Learning to optimize the growth path of corporate talents using the concept of 'digital twin'.">Un metodo innovativo basato sul Deep Q-Learning per ottimizzare il percorso di crescita dei talenti aziendali sfruttando i 'digital twin'.</p>
-                        <div class="mt-auto flex items-center gap-2 text-sm font-bold text-primary-600">
+                        <h3 class="text-lg leading-tight font-bold text-slate-900 mb-2 group-hover:text-primary-600 transition-colors dark:text-white dark:group-hover:text-primary-400">Adaptive talent journey: Optimization via Deep Q-Learning</h3>
+                        <p class="lang-text text-slate-600 text-sm mb-4 line-clamp-3 dark:text-slate-300" data-it="Un metodo innovativo basato sul Deep Q-Learning per ottimizzare il percorso di crescita dei talenti aziendali sfruttando i 'digital twin'." data-en="A novel method based on Deep Q-Learning to optimize the growth path of corporate talents using the concept of 'digital twin'.">Un metodo innovativo basato sul Deep Q-Learning per ottimizzare il percorso di crescita dei talenti aziendali sfruttando i 'digital twin'.</p>
+                        <div class="mt-auto flex items-center gap-2 text-sm font-bold text-primary-600 dark:text-primary-400">
                             <span class="lang-text" data-it="Leggi il Paper" data-en="Read the Paper">Leggi il Paper</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </div>
                     </div>
                 </a>
 
                 <!-- Article Card 2: MEDIUM -->
-                <a href="https://medium.com/likeacoffee-dev/three-js-interactive-3d-experiences-f66a95b69729" target="_blank" rel="noopener" class="card-hover group block bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col sm:flex-row">
-                    <div class="w-full sm:w-48 h-48 sm:h-auto bg-slate-100 relative overflow-hidden shrink-0">
-                        <div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-slate-50"></div>
+                <a href="https://medium.com/likeacoffee-dev/three-js-interactive-3d-experiences-f66a95b69729" target="_blank" rel="noopener" class="card-hover group block bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col sm:flex-row dark:bg-slate-900 dark:border-slate-800">
+                    <div class="w-full sm:w-48 h-48 sm:h-auto bg-slate-100 relative overflow-hidden shrink-0 dark:bg-slate-800">
+                        <div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-slate-50 dark:from-slate-800 dark:to-slate-900"></div>
                         <div class="absolute inset-0 flex items-center justify-center text-gray-500/40 text-6xl">
                             <i class="fa-brands fa-medium"></i>
                         </div>
                     </div>
                     <div class="p-6 flex flex-col justify-center flex-1">
                         <div class="lang-text text-xs font-bold text-slate-400 uppercase tracking-wider mb-2" data-it="Medium • Tech Blog" data-en="Medium • Tech Blog">Medium • Tech Blog</div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors">Three.js: Interactive 3D experiences</h3>
-                        <p class="lang-text text-slate-600 text-sm mb-4 line-clamp-2" data-it="Un'esplorazione pratica su come creare esperienze web 3D interattive sfruttando la potenza della libreria Three.js." data-en="A practical exploration on how to create interactive 3D web experiences leveraging the power of the Three.js library.">Un'esplorazione pratica su come creare esperienze web 3D interattive sfruttando la potenza della libreria Three.js.</p>
-                        <div class="mt-auto flex items-center gap-2 text-sm font-bold text-primary-600">
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors dark:text-white dark:group-hover:text-primary-400">Three.js: Interactive 3D experiences</h3>
+                        <p class="lang-text text-slate-600 text-sm mb-4 line-clamp-2 dark:text-slate-300" data-it="Un'esplorazione pratica su come creare esperienze web 3D interattive sfruttando la potenza della libreria Three.js." data-en="A practical exploration on how to create interactive 3D web experiences leveraging the power of the Three.js library.">Un'esplorazione pratica su come creare esperienze web 3D interattive sfruttando la potenza della libreria Three.js.</p>
+                        <div class="mt-auto flex items-center gap-2 text-sm font-bold text-primary-600 dark:text-primary-400">
                             <span class="lang-text" data-it="Leggi l'articolo" data-en="Read the article">Leggi l'articolo</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </div>
                     </div>
@@ -588,27 +618,28 @@
     </section>
 
     <!-- SEZIONE CONTATTI -->
-    <section id="contact" class="py-20 bg-white">
+    <section id="contact" class="py-20 bg-white dark:bg-slate-950">
         <div class="max-w-6xl mx-auto px-4 sm:px-8">
-            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-8 md:p-12 flex flex-col lg:flex-row lg:items-center gap-10">
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-8 md:p-12 flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-10 dark:border-slate-800 dark:bg-slate-900">
                 <div class="flex-1">
-                    <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3">
+                    <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3 dark:text-white">
                         <i class="fa-solid fa-paper-plane text-primary-500"></i> <span class="lang-text" data-it="Lavoriamo insieme" data-en="Let's work together">Lavoriamo insieme</span>
                     </h2>
-                    <p class="lang-text text-slate-600 mt-3 max-w-xl" data-it="Hai un progetto software, un sito da realizzare o ti serve una consulenza? Scrivimi: ti rispondo personalmente." data-en="Do you have a software project, a website to build or need some consulting? Write to me and I'll get back to you personally.">Hai un progetto software, un sito da realizzare o ti serve una consulenza? Scrivimi: ti rispondo personalmente.</p>
+                    <p class="lang-text text-slate-600 mt-3 max-w-xl dark:text-slate-300" data-it="Hai un progetto software, un sito da realizzare o ti serve una consulenza? Scrivimi: ti rispondo personalmente." data-en="Do you have a software project, a website to build or need some consulting? Write to me and I'll get back to you personally.">Hai un progetto software, un sito da realizzare o ti serve una consulenza? Scrivimi: ti rispondo personalmente.</p>
                 </div>
-                <div class="flex flex-col gap-3 w-full lg:w-auto lg:min-w-[340px]">
-                    <div class="flex items-center gap-3 bg-white border border-slate-200 rounded-xl p-2 pl-4 shadow-sm">
-                        <i class="fa-solid fa-envelope text-primary-500"></i>
-                        <a href="mailto:francescomarzullo.cs@gmail.com" class="flex-1 min-w-0 break-all text-sm sm:text-base font-medium text-slate-800 hover:text-primary-600 transition-colors">francescomarzullo.cs@gmail.com</a>
-                        <button id="copyEmailBtn" type="button" class="shrink-0 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium transition-colors" data-email="francescomarzullo.cs@gmail.com">
-                            <i class="fa-regular fa-copy mr-1"></i><span class="lang-text" data-it="Copia" data-en="Copy">Copia</span>
-                        </button>
-                    </div>
-                    <a href="https://www.linkedin.com/in/francesco-marzullo" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 px-5 py-3 bg-[#0a66c2] text-white rounded-xl font-medium hover:bg-[#004182] transition-colors shadow-sm">
-                        <i class="fa-brands fa-linkedin text-lg"></i> <span class="lang-text" data-it="Scrivimi su LinkedIn" data-en="Message me on LinkedIn">Scrivimi su LinkedIn</span>
+                <div class="flex flex-col gap-3 w-full lg:w-auto lg:min-w-[360px]">
+                    <a href="mailto:francescomarzullo.cs@gmail.com" class="flex items-center justify-center gap-2 px-3 py-3 bg-white border border-slate-200 rounded-xl shadow-sm text-[13px] sm:text-base font-medium text-slate-800 whitespace-nowrap hover:border-primary-200 hover:text-primary-600 transition-colors dark:bg-slate-900 dark:border-slate-800 dark:text-slate-100 dark:hover:border-primary-700 dark:hover:text-primary-400">
+                        <i class="fa-solid fa-envelope text-primary-500 hidden sm:inline" aria-hidden="true"></i>francescomarzullo.cs@gmail.com
                     </a>
-                    <p id="copyEmailStatus" class="text-xs text-slate-500 h-4 text-center" aria-live="polite"></p>
+                    <div class="grid grid-cols-1 min-[360px]:grid-cols-2 gap-3">
+                        <button id="copyEmailBtn" type="button" class="flex items-center justify-center gap-2 px-3 py-3 whitespace-nowrap rounded-xl bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-sm font-medium transition-colors shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:hover:bg-slate-800 dark:text-slate-200" data-email="francescomarzullo.cs@gmail.com">
+                            <i class="fa-regular fa-copy" aria-hidden="true"></i><span class="lang-text" data-it="Copia email" data-en="Copy email">Copia email</span>
+                        </button>
+                        <a href="https://www.linkedin.com/in/francesco-marzullo" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 px-3 py-3 bg-[#0a66c2] text-white rounded-xl text-sm font-medium hover:bg-[#004182] transition-colors shadow-sm">
+                            <i class="fa-brands fa-linkedin text-base" aria-hidden="true"></i> LinkedIn
+                        </a>
+                    </div>
+                    <p id="copyEmailStatus" class="text-xs text-slate-500 h-4 text-center dark:text-slate-400" aria-live="polite"></p>
                 </div>
             </div>
         </div>
@@ -616,13 +647,20 @@
 
     <!-- FOOTER -->
     <footer class="py-8 bg-slate-950 text-center text-slate-500 text-sm">
-        <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-3">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 mb-3">
             <a href="mailto:francescomarzullo.cs@gmail.com" class="hover:text-white transition-colors"><i class="fa-solid fa-envelope mr-1"></i>francescomarzullo.cs@gmail.com</a>
-            <a href="https://www.linkedin.com/in/francesco-marzullo" target="_blank" rel="noopener" class="hover:text-white transition-colors"><i class="fa-brands fa-linkedin mr-1"></i>LinkedIn</a>
-            <a href="https://github.com/FrancescoMarz10" target="_blank" rel="noopener" class="hover:text-white transition-colors"><i class="fa-brands fa-github mr-1"></i>GitHub</a>
+            <div class="flex items-center gap-6">
+                <a href="https://www.linkedin.com/in/francesco-marzullo" target="_blank" rel="noopener" class="hover:text-white transition-colors"><i class="fa-brands fa-linkedin mr-1"></i>LinkedIn</a>
+                <a href="https://github.com/FrancescoMarz10" target="_blank" rel="noopener" class="hover:text-white transition-colors"><i class="fa-brands fa-github mr-1"></i>GitHub</a>
+            </div>
         </div>
         <p class="lang-text" data-it="&copy; 2026 Francesco Marzullo. Tutti i diritti riservati." data-en="&copy; 2026 Francesco Marzullo. All rights reserved.">&copy; 2026 Francesco Marzullo. Tutti i diritti riservati.</p>
     </footer>
+
+    <!-- PULSANTE TORNA SU -->
+    <button type="button" id="backToTop" class="back-to-top fixed z-40 w-12 h-12 rounded-full bg-slate-900 text-white shadow-lg flex items-center justify-center hover:bg-slate-800 transition-all dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200" aria-label="Torna su" data-label-it="Torna su" data-label-en="Back to top">
+        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+    </button>
 
     <!-- MODALE / POPUP PER I CERTIFICATI -->
     <div id="certModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 sm:p-8" role="dialog" aria-modal="true" aria-labelledby="certModalTitle">
@@ -630,20 +668,20 @@
         <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm" onclick="closeCertModal()"></div>
 
         <!-- Finestra della modale -->
-        <div class="relative bg-white rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full max-h-[90vh] flex flex-col transform transition-all">
+        <div class="relative bg-white rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full max-h-[90vh] flex flex-col transform transition-all dark:bg-slate-900">
             <!-- Header della modale -->
-            <div class="flex justify-between items-center p-4 border-b border-slate-100">
-                <h3 id="certModalTitle" class="text-lg font-bold text-slate-900"></h3>
-                <button id="certModalClose" type="button" onclick="closeCertModal()" aria-label="Chiudi" data-label-it="Chiudi" data-label-en="Close" class="text-slate-400 hover:text-slate-700 transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100">
+            <div class="flex justify-between items-center p-4 border-b border-slate-100 dark:border-slate-800">
+                <h3 id="certModalTitle" class="text-lg font-bold text-slate-900 dark:text-white"></h3>
+                <button id="certModalClose" type="button" onclick="closeCertModal()" aria-label="Chiudi" data-label-it="Chiudi" data-label-en="Close" class="text-slate-400 hover:text-slate-700 transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:text-slate-200 dark:hover:bg-slate-800">
                     <i class="fa-solid fa-xmark text-xl"></i>
                 </button>
             </div>
             <!-- Contenuto (Immagine o PDF) -->
-            <div class="p-4 overflow-auto flex-1 bg-slate-50 flex items-center justify-center min-h-[50vh]">
+            <div class="p-4 overflow-auto flex-1 bg-slate-50 flex items-center justify-center min-h-[50vh] dark:bg-slate-950">
                 <!-- Contenitore Immagine -->
-                <img id="certModalImage" src="" alt="Attestato" data-alt-it="Attestato" data-alt-en="Certificate" class="max-w-full max-h-full object-contain rounded-lg shadow-sm border border-slate-200 hidden">
+                <img id="certModalImage" src="" alt="Attestato" data-alt-it="Attestato" data-alt-en="Certificate" class="max-w-full max-h-full object-contain rounded-lg shadow-sm border border-slate-200 hidden dark:border-slate-800">
                 <!-- Contenitore PDF -->
-                <iframe id="certModalPdf" src="" class="w-full h-[60vh] md:h-[70vh] rounded-lg shadow-sm border border-slate-200 hidden" type="application/pdf"></iframe>
+                <iframe id="certModalPdf" src="" class="w-full h-[60vh] md:h-[70vh] rounded-lg shadow-sm border border-slate-200 hidden dark:border-slate-800" type="application/pdf"></iframe>
                 <p id="certModalFallback" class="lang-text hidden text-slate-400 text-sm italic" data-it="Documento non trovato" data-en="Document not found">Documento non trovato</p>
             </div>
         </div>
@@ -684,20 +722,22 @@
             const btnEnMob = document.getElementById('lang-en-mobile');
 
             if (lang === 'it') {
-                btnIt.className = "px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all focus:outline-none";
-                btnEn.className = "px-3 py-1.5 rounded-md hover:text-slate-900 transition-all focus:outline-none";
+                btnIt.className = "px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all focus:outline-none dark:bg-slate-900 dark:text-white";
+                btnEn.className = "px-3 py-1.5 rounded-md hover:text-slate-900 transition-all focus:outline-none dark:hover:text-white";
                 if(btnItMob && btnEnMob) {
-                    btnItMob.className = "px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all focus:outline-none";
-                    btnEnMob.className = "px-3 py-1.5 rounded-md hover:text-slate-900 transition-all focus:outline-none";
+                    btnItMob.className = "px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all focus:outline-none dark:bg-slate-900 dark:text-white";
+                    btnEnMob.className = "px-3 py-1.5 rounded-md hover:text-slate-900 transition-all focus:outline-none dark:hover:text-white";
                 }
             } else {
-                btnEn.className = "px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all focus:outline-none";
-                btnIt.className = "px-3 py-1.5 rounded-md hover:text-slate-900 transition-all focus:outline-none";
+                btnEn.className = "px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all focus:outline-none dark:bg-slate-900 dark:text-white";
+                btnIt.className = "px-3 py-1.5 rounded-md hover:text-slate-900 transition-all focus:outline-none dark:hover:text-white";
                 if(btnItMob && btnEnMob) {
-                    btnEnMob.className = "px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all focus:outline-none";
-                    btnItMob.className = "px-3 py-1.5 rounded-md hover:text-slate-900 transition-all focus:outline-none";
+                    btnEnMob.className = "px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all focus:outline-none dark:bg-slate-900 dark:text-white";
+                    btnItMob.className = "px-3 py-1.5 rounded-md hover:text-slate-900 transition-all focus:outline-none dark:hover:text-white";
                 }
             }
+
+            if (typeof updateThemeButtons === 'function') updateThemeButtons();
 
             // Cambia i testi in tutta la pagina
             const elements = document.querySelectorAll('.lang-text');
@@ -707,6 +747,8 @@
                     el.innerHTML = newText;
                 }
             });
+
+            if (typeof renderCerts === 'function') renderCerts();
 
             // Traduce anche attributi non visibili (screen reader, tooltip, testo alternativo)
             [['label', 'aria-label'], ['alt', 'alt'], ['title', 'title']].forEach(([key, attr]) => {
@@ -767,6 +809,85 @@
             if (lastFocused) lastFocused.focus();
         }
 
+        // FORMAZIONE CONTINUA: su smartphone schede e "Mostra tutte"; su desktop tutto visibile
+        const CERTS_VISIBLE = 4;
+        const certTabs = [...document.querySelectorAll('.cert-tab')];
+        const certMore = document.getElementById('certMore');
+        let certActive = 'cert';
+        let certOpen = false;
+
+        function renderCerts() {
+            const en = document.documentElement.lang === 'en';
+            document.querySelectorAll('.cert-panel').forEach(panel => {
+                const isActive = panel.id === 'panel-' + certActive;
+                panel.classList.toggle('cert-mobile-hidden', !isActive);
+                [...panel.children].forEach((card, i) => {
+                    card.classList.toggle('cert-mobile-hidden', !certOpen && i >= CERTS_VISIBLE);
+                });
+            });
+            certTabs.forEach(tab => {
+                const selected = tab.id === 'tab-' + certActive;
+                tab.setAttribute('aria-selected', String(selected));
+                tab.tabIndex = selected ? 0 : -1;
+            });
+            const total = document.getElementById('panel-' + certActive).children.length;
+            certMore.classList.toggle('cert-mobile-hidden', total <= CERTS_VISIBLE);
+            certMore.setAttribute('aria-expanded', String(certOpen));
+            document.getElementById('certMoreText').textContent = certOpen
+                ? (en ? 'Show less' : 'Mostra meno')
+                : (en ? `Show all (${total})` : `Mostra tutte (${total})`);
+            document.getElementById('certMoreIcon').classList.toggle('rotate-180', certOpen);
+        }
+
+        certTabs.forEach((tab, i) => {
+            tab.addEventListener('click', () => {
+                certActive = tab.id.replace('tab-', '');
+                certOpen = false;
+                renderCerts();
+            });
+            tab.addEventListener('keydown', (e) => {
+                if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+                const next = certTabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + certTabs.length) % certTabs.length];
+                next.focus();
+                next.click();
+            });
+        });
+        certMore.addEventListener('click', () => {
+            certOpen = !certOpen;
+            renderCerts();
+        });
+        renderCerts();
+
+        // NAVIGAZIONE: evidenzia la sezione corrente e mostra "torna su"
+        const spySections = ['about', 'skills', 'experience', 'projects', 'blog', 'contact']
+            .map(id => document.getElementById(id)).filter(Boolean);
+        const navLinks = [...document.querySelectorAll('.nav-link')];
+        const backToTop = document.getElementById('backToTop');
+        let spyTicking = false;
+
+        function updateNav() {
+            spyTicking = false;
+            const line = window.innerHeight * 0.35;
+            let current = null;
+            spySections.forEach(sec => { if (sec.getBoundingClientRect().top <= line) current = sec.id; });
+            navLinks.forEach(link => {
+                const active = link.getAttribute('href') === '#' + current;
+                link.classList.toggle('is-active', active);
+                if (active) link.setAttribute('aria-current', 'true'); else link.removeAttribute('aria-current');
+            });
+            backToTop.classList.toggle('is-visible', window.scrollY > window.innerHeight);
+        }
+        window.addEventListener('scroll', () => {
+            if (!spyTicking) { spyTicking = true; requestAnimationFrame(updateNav); }
+        }, { passive: true });
+        window.addEventListener('resize', updateNav);
+        updateNav();
+
+        backToTop.addEventListener('click', () => {
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+        });
+
         // Copia l'indirizzo email negli appunti
         document.getElementById('copyEmailBtn').addEventListener('click', async (e) => {
             const btn = e.currentTarget;
@@ -787,6 +908,34 @@
                 closeCertModal();
             }
         });
+
+        // TEMA CHIARO / SCURO
+        const themeToggles = document.querySelectorAll('.theme-toggle');
+        function updateThemeButtons() {
+            const isDark = document.documentElement.classList.contains('dark');
+            const en = document.documentElement.lang === 'en';
+            const label = isDark
+                ? (en ? 'Switch to light theme' : 'Attiva tema chiaro')
+                : (en ? 'Switch to dark theme' : 'Attiva tema scuro');
+            themeToggles.forEach(btn => {
+                btn.setAttribute('aria-pressed', String(isDark));
+                btn.setAttribute('aria-label', label);
+                btn.title = label;
+            });
+        }
+
+        function applyTheme(dark) {
+            document.documentElement.classList.toggle('dark', dark);
+            updateThemeButtons();
+        }
+
+        themeToggles.forEach(btn => btn.addEventListener('click', () => {
+            const dark = !document.documentElement.classList.contains('dark');
+            try { localStorage.setItem('colorTheme', dark ? 'dark' : 'light'); } catch (e) {}
+            applyTheme(dark);
+        }));
+
+        updateThemeButtons();
     </script>
 </body>
 </html>

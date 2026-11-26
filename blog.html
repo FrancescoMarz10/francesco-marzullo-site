@@ -21,34 +21,46 @@
     <link rel="icon" href="./assets/images/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="apple-touch-icon" href="./assets/images/apple-touch-icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Tema: chiaro di default, scuro solo se scelto con l'interruttore (applicato prima del disegno per evitare lampi) -->
+    <script>
+        (function () {
+            var saved = null;
+            try { saved = localStorage.getItem('colorTheme'); } catch (e) {}
+            if (saved === 'dark') document.documentElement.classList.add('dark');
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/style.css?v=1">
+    <link rel="stylesheet" href="./assets/css/style.css?v=5">
 
 </head>
-<body class="text-slate-800 antialiased bg-slate-50 flex flex-col min-h-screen">
+<body class="text-slate-800 antialiased bg-slate-50 flex flex-col min-h-screen dark:bg-slate-950 dark:text-slate-100">
 
     <!-- Navbar Fissa (adattata per tornare alla Home) -->
-    <nav class="fixed w-full bg-white/90 backdrop-blur-md z-50 border-b border-slate-200 top-0">
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md z-50 border-b border-slate-200 top-0 dark:bg-slate-950/90 dark:border-slate-800">
         <div class="max-w-6xl mx-auto px-4 sm:px-8 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-xl font-bold tracking-tight text-slate-900 hover:text-primary-600 transition-colors">
-                <i class="fa-solid fa-terminal text-primary-600 mr-2"></i>Francesco Marzullo
+            <a href="index.html" class="text-xl font-bold tracking-tight text-slate-900 hover:text-primary-600 transition-colors dark:text-white dark:hover:text-primary-400">
+                <i class="fa-solid fa-terminal text-primary-600 mr-2 dark:text-primary-400"></i>Francesco Marzullo
             </a>
 
             <!-- Menu Desktop -->
-            <div class="hidden md:flex gap-6 text-sm font-medium text-slate-600">
-                <a href="index.html#about" class="lang-text hover:text-primary-600 transition-colors" data-it="Home" data-en="Home">Home</a>
-                <a href="index.html#skills" class="lang-text hover:text-primary-600 transition-colors" data-it="Competenze" data-en="Skills">Competenze</a>
-                <a href="index.html#experience" class="lang-text hover:text-primary-600 transition-colors" data-it="Esperienza" data-en="Experience">Esperienza</a>
-                <a href="index.html#projects" class="lang-text hover:text-primary-600 transition-colors" data-it="Progetti" data-en="Projects">Progetti</a>
+            <div class="hidden md:flex gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="index.html#about" class="lang-text hover:text-primary-600 transition-colors dark:hover:text-primary-400" data-it="Home" data-en="Home">Home</a>
+                <a href="index.html#skills" class="lang-text hover:text-primary-600 transition-colors dark:hover:text-primary-400" data-it="Competenze" data-en="Skills">Competenze</a>
+                <a href="index.html#experience" class="lang-text hover:text-primary-600 transition-colors dark:hover:text-primary-400" data-it="Esperienza" data-en="Experience">Esperienza</a>
+                <a href="index.html#projects" class="lang-text hover:text-primary-600 transition-colors dark:hover:text-primary-400" data-it="Progetti" data-en="Projects">Progetti</a>
             </div>
 
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3 sm:gap-4">
+                <!-- Tema chiaro / scuro -->
+                <button type="button" class="theme-toggle w-9 h-9 shrink-0 rounded-lg bg-slate-100 dark:bg-slate-800 text-amber-500 dark:text-slate-200 hover:text-amber-600 dark:hover:text-white flex items-center justify-center shadow-inner transition-colors" aria-label="Attiva tema scuro" aria-pressed="false">
+                    <i class="fa-solid fa-sun dark:hidden" aria-hidden="true"></i><i class="fa-solid fa-moon hidden dark:inline-block" aria-hidden="true"></i>
+                </button>
                 <!-- Language Switcher -->
-                <div class="flex items-center bg-slate-100 rounded-lg p-1 text-xs font-bold text-slate-500 cursor-pointer shadow-inner">
-                    <button id="lang-it" class="px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all" onclick="setLanguage('it')">IT</button>
-                    <button id="lang-en" class="px-3 py-1.5 rounded-md hover:text-slate-900 transition-all" onclick="setLanguage('en')">EN</button>
+                <div class="flex items-center bg-slate-100 rounded-lg p-1 text-xs font-bold text-slate-500 cursor-pointer shadow-inner dark:bg-slate-800 dark:text-slate-400">
+                    <button id="lang-it" class="px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all dark:bg-slate-900 dark:text-white" onclick="setLanguage('it')">IT</button>
+                    <button id="lang-en" class="px-3 py-1.5 rounded-md hover:text-slate-900 transition-all dark:hover:text-white" onclick="setLanguage('en')">EN</button>
                 </div>
             </div>
         </div>
@@ -59,15 +71,15 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-8">
 
             <!-- Header Blog -->
-            <div class="mb-12 border-b border-slate-200 pb-8">
-                <a href="index.html" class="inline-flex items-center gap-2 text-primary-600 text-sm font-medium hover:text-primary-700 mb-6 transition-colors">
+            <div class="mb-12 border-b border-slate-200 pb-8 dark:border-slate-800">
+                <a href="index.html" class="inline-flex items-center gap-2 text-primary-600 text-sm font-medium hover:text-primary-700 mb-6 transition-colors dark:text-primary-400 dark:hover:text-primary-200">
                     <i class="fa-solid fa-arrow-left"></i> <span class="lang-text" data-it="Torna al Portfolio" data-en="Back to Portfolio">Torna al Portfolio</span>
                 </a>
-                <h1 class="text-4xl font-bold text-slate-900 flex items-center gap-3">
+                <h1 class="text-4xl font-bold text-slate-900 flex items-center gap-3 dark:text-white">
                     <i class="fa-solid fa-book-open text-primary-500"></i>
                     <span class="lang-text" data-it="Archivio Pubblicazioni" data-en="Publications Archive">Archivio Pubblicazioni</span>
                 </h1>
-                <p class="lang-text text-lg text-slate-500 mt-4 max-w-2xl" data-it="La raccolta completa dei miei editoriali, riflessioni tecnologiche e articoli legati al territorio e al worldbuilding." data-en="The complete collection of my editorials, technological reflections, and articles related to the territory and worldbuilding.">
+                <p class="lang-text text-lg text-slate-500 mt-4 max-w-2xl dark:text-slate-400" data-it="La raccolta completa dei miei editoriali, riflessioni tecnologiche e articoli legati al territorio e al worldbuilding." data-en="The complete collection of my editorials, technological reflections, and articles related to the territory and worldbuilding.">
                     La raccolta completa dei miei editoriali, riflessioni tecnologiche e articoli legati al territorio e al worldbuilding.
                 </p>
             </div>
@@ -76,39 +88,39 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 <!-- Card Articolo 1 (Ricerca - Elsevier) -->
-                <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417422014348?via%3Dihub" target="_blank" rel="noopener" class="card-hover group block bg-white border-2 border-primary-200 shadow-md rounded-2xl overflow-hidden flex flex-col relative">
+                <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417422014348?via%3Dihub" target="_blank" rel="noopener" class="card-hover group block bg-white border-2 border-primary-200 shadow-md rounded-2xl overflow-hidden flex flex-col relative dark:bg-slate-900 dark:border-primary-900">
                     <!-- Badge -->
                     <div class="absolute top-0 right-0 bg-primary-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg z-10 shadow-sm lang-text tracking-wider" data-it="IN EVIDENZA" data-en="FEATURED">IN EVIDENZA</div>
 
-                    <div class="w-full h-48 bg-slate-100 relative overflow-hidden shrink-0">
-                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-100 to-purple-50"></div>
+                    <div class="w-full h-48 bg-slate-100 relative overflow-hidden shrink-0 dark:bg-slate-800">
+                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-100 to-purple-50 dark:from-indigo-950 dark:to-slate-900"></div>
                         <div class="absolute inset-0 flex items-center justify-center text-indigo-500/40 text-6xl">
                             <i class="fa-solid fa-microchip"></i>
                         </div>
                     </div>
                     <div class="p-6 flex flex-col flex-1">
                         <div class="lang-text text-xs font-bold text-slate-400 uppercase tracking-wider mb-2" data-it="Expert Systems with Applications" data-en="Expert Systems with Applications">Expert Systems with Applications</div>
-                        <h3 class="text-lg leading-tight font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors">Adaptive talent journey: Optimization via Deep Q-Learning</h3>
-                        <p class="lang-text text-slate-600 text-sm mb-6 line-clamp-3" data-it="Un metodo innovativo basato sul Deep Q-Learning per ottimizzare il percorso di crescita dei talenti aziendali sfruttando i 'digital twin'." data-en="A novel method based on Deep Q-Learning to optimize the growth path of corporate talents using the concept of 'digital twin'.">Un metodo innovativo basato sul Deep Q-Learning per ottimizzare il percorso di crescita dei talenti aziendali sfruttando i 'digital twin'.</p>
-                        <div class="mt-auto flex items-center gap-2 text-sm font-bold text-primary-600">
+                        <h3 class="text-lg leading-tight font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors dark:text-white dark:group-hover:text-primary-400">Adaptive talent journey: Optimization via Deep Q-Learning</h3>
+                        <p class="lang-text text-slate-600 text-sm mb-6 line-clamp-3 dark:text-slate-300" data-it="Un metodo innovativo basato sul Deep Q-Learning per ottimizzare il percorso di crescita dei talenti aziendali sfruttando i 'digital twin'." data-en="A novel method based on Deep Q-Learning to optimize the growth path of corporate talents using the concept of 'digital twin'.">Un metodo innovativo basato sul Deep Q-Learning per ottimizzare il percorso di crescita dei talenti aziendali sfruttando i 'digital twin'.</p>
+                        <div class="mt-auto flex items-center gap-2 text-sm font-bold text-primary-600 dark:text-primary-400">
                             <span class="lang-text" data-it="Leggi il Paper" data-en="Read Paper">Leggi il Paper</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </div>
                     </div>
                 </a>
 
                 <!-- Card Articolo 2 (Medium) -->
-                <a href="https://medium.com/likeacoffee-dev/three-js-interactive-3d-experiences-f66a95b69729" target="_blank" rel="noopener" class="card-hover group block bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col">
-                    <div class="w-full h-48 bg-slate-100 relative overflow-hidden shrink-0">
-                        <div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-slate-50"></div>
+                <a href="https://medium.com/likeacoffee-dev/three-js-interactive-3d-experiences-f66a95b69729" target="_blank" rel="noopener" class="card-hover group block bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col dark:bg-slate-900 dark:border-slate-800">
+                    <div class="w-full h-48 bg-slate-100 relative overflow-hidden shrink-0 dark:bg-slate-800">
+                        <div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-slate-50 dark:from-slate-800 dark:to-slate-900"></div>
                         <div class="absolute inset-0 flex items-center justify-center text-gray-500/40 text-6xl">
                             <i class="fa-brands fa-medium"></i>
                         </div>
                     </div>
                     <div class="p-6 flex flex-col flex-1">
                         <div class="lang-text text-xs font-bold text-slate-400 uppercase tracking-wider mb-2" data-it="Medium • Tech Blog" data-en="Medium • Tech Blog">Medium • Tech Blog</div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors">Three.js: Interactive 3D experiences</h3>
-                        <p class="lang-text text-slate-600 text-sm mb-6 line-clamp-3" data-it="Un'esplorazione pratica su come creare esperienze web 3D interattive sfruttando la potenza di Three.js." data-en="A practical exploration on how to create interactive 3D web experiences leveraging the power of Three.js.">Un'esplorazione pratica su come creare esperienze web 3D interattive sfruttando la potenza di Three.js.</p>
-                        <div class="mt-auto flex items-center gap-2 text-sm font-bold text-primary-600">
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors dark:text-white dark:group-hover:text-primary-400">Three.js: Interactive 3D experiences</h3>
+                        <p class="lang-text text-slate-600 text-sm mb-6 line-clamp-3 dark:text-slate-300" data-it="Un'esplorazione pratica su come creare esperienze web 3D interattive sfruttando la potenza di Three.js." data-en="A practical exploration on how to create interactive 3D web experiences leveraging the power of Three.js.">Un'esplorazione pratica su come creare esperienze web 3D interattive sfruttando la potenza di Three.js.</p>
+                        <div class="mt-auto flex items-center gap-2 text-sm font-bold text-primary-600 dark:text-primary-400">
                             <span class="lang-text" data-it="Leggi su Medium" data-en="Read on Medium">Leggi su Medium</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </div>
                     </div>
@@ -134,12 +146,14 @@
             const btnEn = document.getElementById('lang-en');
 
             if (lang === 'it') {
-                btnIt.className = "px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all";
-                btnEn.className = "px-3 py-1.5 rounded-md hover:text-slate-900 transition-all";
+                btnIt.className = "px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all dark:bg-slate-900 dark:text-white";
+                btnEn.className = "px-3 py-1.5 rounded-md hover:text-slate-900 transition-all dark:hover:text-white";
             } else {
-                btnEn.className = "px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all";
-                btnIt.className = "px-3 py-1.5 rounded-md hover:text-slate-900 transition-all";
+                btnEn.className = "px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all dark:bg-slate-900 dark:text-white";
+                btnIt.className = "px-3 py-1.5 rounded-md hover:text-slate-900 transition-all dark:hover:text-white";
             }
+
+            if (typeof updateThemeButtons === 'function') updateThemeButtons();
 
             // Cambia i testi in tutta la pagina
             const elements = document.querySelectorAll('.lang-text');
@@ -156,6 +170,34 @@
             const savedLang = localStorage.getItem('preferredLanguage') || 'it';
             setLanguage(savedLang);
         });
+
+        // TEMA CHIARO / SCURO
+        const themeToggles = document.querySelectorAll('.theme-toggle');
+        function updateThemeButtons() {
+            const isDark = document.documentElement.classList.contains('dark');
+            const en = document.documentElement.lang === 'en';
+            const label = isDark
+                ? (en ? 'Switch to light theme' : 'Attiva tema chiaro')
+                : (en ? 'Switch to dark theme' : 'Attiva tema scuro');
+            themeToggles.forEach(btn => {
+                btn.setAttribute('aria-pressed', String(isDark));
+                btn.setAttribute('aria-label', label);
+                btn.title = label;
+            });
+        }
+
+        function applyTheme(dark) {
+            document.documentElement.classList.toggle('dark', dark);
+            updateThemeButtons();
+        }
+
+        themeToggles.forEach(btn => btn.addEventListener('click', () => {
+            const dark = !document.documentElement.classList.contains('dark');
+            try { localStorage.setItem('colorTheme', dark ? 'dark' : 'light'); } catch (e) {}
+            applyTheme(dark);
+        }));
+
+        updateThemeButtons();
     </script>
 </body>
 </html>
