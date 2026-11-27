@@ -12,6 +12,16 @@
 }
 
 /* Schede della formazione continua */
+/* Schede di "Formazione continua": testo sempre su una riga, margini ridotti sui telefoni più stretti */
+.cert-tab {
+    white-space: nowrap;
+}
+@media (max-width: 359px) {
+    .cert-tab {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
 .cert-tab[aria-selected="true"] {
     background: #fff;
     color: #0f172a;
@@ -76,5 +86,24 @@
 @media (max-width: 767px) {
     .cert-mobile-hidden {
         display: none !important;
+    }
+}
+
+/* Pulsante CV nella prima schermata: sui telefoni stretti meno margine interno, sotto i 374 px solo "CV" */
+.cv-short {
+    display: none;
+}
+@media (max-width: 389px) {
+    .cv-btn {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+}
+@media (max-width: 373px) {
+    .cv-full {
+        display: none;
+    }
+    .cv-short {
+        display: inline;
     }
 }

@@ -35,7 +35,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/style.css?v=7">
+    <link rel="stylesheet" href="./assets/css/style.css?v=8">
 
 </head>
 <body class="text-slate-800 antialiased bg-slate-50 dark:bg-slate-950 dark:text-slate-100">
@@ -122,11 +122,12 @@
             <div class="flex flex-col sm:flex-row sm:flex-wrap gap-3 pt-4">
                 <a href="#skills" class="lang-text text-center px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors shadow-md" data-it="Esplora il Portfolio" data-en="Explore Portfolio">Esplora il Portfolio</a>
                 <div class="flex gap-3">
-                    <a href="./assets/cv/CV-Francesco-Marzullo-IT.pdf" data-href-it="./assets/cv/CV-Francesco-Marzullo-IT.pdf" data-href-en="./assets/cv/CV-Francesco-Marzullo-EN.pdf" download class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 bg-white border border-slate-200 text-slate-800 rounded-lg font-medium shadow-sm hover:border-primary-200 hover:text-primary-600 transition-colors dark:bg-slate-900 dark:border-slate-700 dark:text-slate-100 dark:hover:border-primary-700 dark:hover:text-primary-400">
-                        <i class="fa-solid fa-file-arrow-down text-primary-500" aria-hidden="true"></i><span class="lang-text" data-it="Scarica il CV" data-en="Download CV">Scarica il CV</span>
+                    <a href="./assets/cv/CV-Francesco-Marzullo-IT.pdf" data-href-it="./assets/cv/CV-Francesco-Marzullo-IT.pdf" data-href-en="./assets/cv/CV-Francesco-Marzullo-EN.pdf" download class="cv-btn flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 bg-white border border-slate-200 text-slate-800 rounded-lg font-medium shadow-sm hover:border-primary-200 hover:text-primary-600 transition-colors dark:bg-slate-900 dark:border-slate-700 dark:text-slate-100 dark:hover:border-primary-700 dark:hover:text-primary-400">
+                        <i class="fa-solid fa-file-arrow-down text-primary-500" aria-hidden="true"></i><span class="lang-text cv-full" data-it="Scarica il CV" data-en="Download CV">Scarica il CV</span><span class="cv-short">CV</span>
                     </a>
                     <a href="https://github.com/FrancescoMarz10" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub" class="w-12 h-12 shrink-0 rounded-lg border border-slate-200 bg-white flex items-center justify-center shadow-sm hover:border-slate-300 hover:bg-slate-50 transition-colors dark:bg-slate-900 dark:border-slate-700 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100"><i class="fa-brands fa-github text-xl" aria-hidden="true"></i></a>
                     <a href="https://www.linkedin.com/in/francesco-marzullo" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn" class="w-12 h-12 shrink-0 rounded-lg border border-slate-200 bg-white flex items-center justify-center shadow-sm hover:border-slate-300 hover:bg-slate-50 transition-colors dark:bg-slate-900 dark:border-slate-700 dark:hover:bg-slate-800"><i class="fa-brands fa-linkedin text-xl text-[#0a66c2] dark:text-[#70b5f9]" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/marzullofrancesco/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram" class="w-12 h-12 shrink-0 rounded-lg border border-slate-200 bg-white flex items-center justify-center shadow-sm hover:border-slate-300 hover:bg-slate-50 transition-colors dark:bg-slate-900 dark:border-slate-700 dark:hover:bg-slate-800"><i class="fa-brands fa-instagram text-xl" style="color:#e1306c" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
@@ -333,15 +334,15 @@
                 <!-- Schede: Certificazioni / Attestati -->
                 <div class="flex sm:inline-flex md:hidden w-full sm:w-auto bg-slate-100 rounded-lg p-1 text-sm font-semibold text-slate-500 shadow-inner mb-6 dark:bg-slate-800 dark:text-slate-400" role="tablist" aria-label="Formazione continua">
                     <button type="button" role="tab" id="tab-cert" aria-controls="panel-cert" aria-selected="true" class="cert-tab flex-1 sm:flex-none px-4 py-2 rounded-md transition-all">
-                        <span class="lang-text" data-it="Certificazioni ufficiali" data-en="Official certifications">Certificazioni ufficiali</span> <span class="text-slate-400 font-medium">8</span>
+                        <span class="lang-text" data-it="Certificazioni" data-en="Certifications">Certificazioni</span> <span class="text-slate-400 font-medium">8</span>
                     </button>
                     <button type="button" role="tab" id="tab-att" aria-controls="panel-att" aria-selected="false" tabindex="-1" class="cert-tab flex-1 sm:flex-none px-4 py-2 rounded-md transition-all">
-                        <span class="lang-text" data-it="Partecipazioni e conferenze" data-en="Attendance &amp; conferences">Partecipazioni e conferenze</span> <span class="text-slate-400 font-medium">4</span>
+                        <span class="lang-text" data-it="Partecipazioni" data-en="Attendance">Partecipazioni</span> <span class="text-slate-400 font-medium">4</span>
                     </button>
                 </div>
 
                 <!-- SEZIONE 1: CERTIFICAZIONI UFFICIALI (su smartphone: scheda) -->
-                <h4 class="hidden md:block text-lg font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2 lang-text dark:text-slate-100 dark:border-slate-800" data-it="Certificazioni Ufficiali" data-en="Official Certifications">Certificazioni Ufficiali</h4>
+                <h4 class="hidden md:block text-lg font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2 lang-text dark:text-slate-100 dark:border-slate-800" data-it="Certificazioni" data-en="Certifications">Certificazioni</h4>
                 <div id="panel-cert" role="tabpanel" aria-labelledby="tab-cert" class="cert-panel grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:mb-10">
 
                     <!-- Certificato 1: Magnolia CMS Project -->
@@ -418,7 +419,7 @@
                 </div>
 
                 <!-- SEZIONE 2: ATTESTATI E CONFERENZE (su smartphone: scheda) -->
-                <h4 class="hidden md:block text-lg font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2 lang-text dark:text-slate-100 dark:border-slate-800" data-it="Attestati di Partecipazione e Conferenze" data-en="Certificates of Attendance &amp; Conferences">Attestati di Partecipazione e Conferenze</h4>
+                <h4 class="hidden md:block text-lg font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2 lang-text dark:text-slate-100 dark:border-slate-800" data-it="Partecipazioni" data-en="Attendance">Partecipazioni</h4>
                 <div id="panel-att" role="tabpanel" aria-labelledby="tab-att" class="cert-panel grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
                     <!-- Attestato 1: DevSecOps -->
@@ -635,11 +636,14 @@
                         <i class="fa-solid fa-envelope text-primary-500 hidden sm:inline" aria-hidden="true"></i>francescomarzullo.cs@gmail.com
                     </a>
                     <div class="grid grid-cols-1 min-[360px]:grid-cols-2 gap-3">
-                        <button id="copyEmailBtn" type="button" class="flex items-center justify-center gap-2 px-3 py-3 whitespace-nowrap rounded-xl bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-sm font-medium transition-colors shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:hover:bg-slate-800 dark:text-slate-200" data-email="francescomarzullo.cs@gmail.com">
+                        <button id="copyEmailBtn" type="button" style="grid-column:1/-1" class="flex items-center justify-center gap-2 px-3 py-3 whitespace-nowrap rounded-xl bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-sm font-medium transition-colors shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:hover:bg-slate-800 dark:text-slate-200" data-email="francescomarzullo.cs@gmail.com">
                             <i class="fa-regular fa-copy" aria-hidden="true"></i><span class="lang-text" data-it="Copia email" data-en="Copy email">Copia email</span>
                         </button>
                         <a href="https://www.linkedin.com/in/francesco-marzullo" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 px-3 py-3 bg-[#0a66c2] text-white rounded-xl text-sm font-medium hover:bg-[#004182] transition-colors shadow-sm">
                             <i class="fa-brands fa-linkedin text-base" aria-hidden="true"></i> LinkedIn
+                        </a>
+                        <a href="https://www.instagram.com/marzullofrancesco/" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 px-3 py-3 text-white rounded-xl text-sm font-medium hover:opacity-90 transition-opacity shadow-sm" style="background:linear-gradient(45deg,#f58529,#dd2a7b 50%,#8134af)">
+                            <i class="fa-brands fa-instagram text-base" aria-hidden="true"></i> Instagram
                         </a>
                     </div>
                     <a href="./assets/cv/CV-Francesco-Marzullo-IT.pdf" data-href-it="./assets/cv/CV-Francesco-Marzullo-IT.pdf" data-href-en="./assets/cv/CV-Francesco-Marzullo-EN.pdf" download class="flex items-center justify-center gap-2 px-3 py-3 whitespace-nowrap rounded-xl bg-slate-900 text-white text-sm font-medium hover:bg-slate-800 transition-colors shadow-sm dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200">
@@ -657,6 +661,7 @@
             <a href="mailto:francescomarzullo.cs@gmail.com" class="hover:text-white transition-colors"><i class="fa-solid fa-envelope mr-1"></i>francescomarzullo.cs@gmail.com</a>
             <div class="flex items-center gap-6">
                 <a href="https://www.linkedin.com/in/francesco-marzullo" target="_blank" rel="noopener" class="hover:text-white transition-colors"><i class="fa-brands fa-linkedin mr-1"></i>LinkedIn</a>
+                <a href="https://www.instagram.com/marzullofrancesco/" target="_blank" rel="noopener" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram mr-1"></i>Instagram</a>
                 <a href="https://github.com/FrancescoMarz10" target="_blank" rel="noopener" class="hover:text-white transition-colors"><i class="fa-brands fa-github mr-1"></i>GitHub</a>
             </div>
         </div>
