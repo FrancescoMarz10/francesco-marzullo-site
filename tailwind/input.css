@@ -107,3 +107,67 @@
         display: inline;
     }
 }
+
+/* Prima schermata su smartphone: foto grande accanto al titolo, badge "Disponibile..." su una riga */
+.hero-head-photo {
+    display: none;
+}
+@media (max-width: 767px) {
+    .hero-photo-desktop {
+        display: none;
+    }
+    #about > div:first-child {
+        width: 100%;
+    }
+    .hero-badge {
+        white-space: nowrap;
+        font-size: clamp(0.625rem, 3.1vw, 0.875rem);
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    .hero-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) min(38vw, 160px);
+        gap: 14px;
+        align-items: center;
+    }
+    .hero-head h1 {
+        font-size: clamp(1.25rem, 6.8vw, 2rem);
+        line-height: 1.1;
+        text-wrap: balance;
+    }
+    .hero-head h1 > span {
+        display: inline;
+    }
+    .hero-head-photo {
+        display: block;
+        position: relative;
+        width: min(38vw, 160px);
+        aspect-ratio: 1 / 1;
+    }
+    .hero-head-photo::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 9999px;
+        background: #dbeafe;
+        filter: blur(28px);
+        opacity: 0.7;
+    }
+    .hero-head-photo img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 9999px;
+        border: 3px solid #fff;
+        box-shadow: 0 14px 30px -12px rgba(37, 99, 235, 0.5);
+    }
+    .dark .hero-head-photo::before {
+        background: #1e3a8a;
+        opacity: 0.5;
+    }
+    .dark .hero-head-photo img {
+        border-color: #1e293b;
+    }
+}
