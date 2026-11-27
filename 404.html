@@ -45,8 +45,9 @@
   .game { position:relative; border:4px solid #0f172a; border-radius:12px; overflow:hidden; background:#eff6ff; touch-action:manipulation; cursor:pointer; user-select:none; -webkit-user-select:none; }
   .dark .game { border-color:#334155; background:#0b1a3a; }
   canvas { display:block; width:100%; height:auto; image-rendering:pixelated; }
-  .hint { position:absolute; inset:auto 0 14px; font-size:10px; color:#1e3a8a; }
-  .dark .hint { color:#93c5fd; }
+  .hint { position:absolute; left:50%; top:54%; transform:translate(-50%,-50%); width:max-content; max-width:88%; font-size:10px; line-height:1.8; color:#0f172a; background:rgba(255,255,255,.94); border:3px solid #0f172a; border-radius:8px; padding:10px 14px; box-shadow:4px 4px 0 rgba(15,23,42,.25); pointer-events:none; }
+  .dark .hint { color:#e2e8f0; background:rgba(15,23,42,.94); border-color:#475569; }
+  @media (max-width:380px) { .hint { font-size:8px; padding:8px 10px; } }
   .score { position:absolute; top:12px; right:14px; font-size:11px; color:#0f172a; }
   .dark .score { color:#e2e8f0; }
   .btns { margin-top:22px; }
@@ -97,7 +98,7 @@
   try { best = parseInt(localStorage.getItem('m4r7Best') || '0', 10) || 0; } catch (e) {}
   document.addEventListener('visibilitychange', function () { if (document.hidden && state === 'run') { state = 'over'; hint.innerHTML = (en ? 'PAUSE' : 'PAUSA') + '<br><br>' + (en ? 'TAP TO RETRY' : 'TOCCA PER RIPROVARE'); hint.style.display = 'block'; } });
   function dark() { return document.documentElement.classList.contains('dark'); }
-  function draw(grid, x, y, s) { for (var r = 0; r < grid.length; r++) for (var c = 0; c < grid[r].length; c++) { var k = grid[r][c]; if (COL[k]) { ctx.fillStyle = COL[k]; ctx.fillRect(Math.round(x + c * s), Math.round(y + r * s), s, s); } } }
+  function draw(grid, x, y, s) { for (var r = 0; r < grid.length; r++) for (var c = 0; c < grid[r].length; c++) { var k = grid[r][c]; if (COL[k]) { ctx.fillStyle = (k === 'K' && dark()) ? '#cbd5e1' : COL[k]; ctx.fillRect(Math.round(x + c * s), Math.round(y + r * s), s, s); } } }
   function reset() { bot = { x: 24, y: GROUND - BH, vy: 0 }; bugs = []; speed = 2.2; score = 0; spawnIn = 60; }
   function jump() {
     if (state === 'idle' || state === 'over') { reset(); state = 'run'; hint.style.display = 'none'; return; }
