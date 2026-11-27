@@ -170,7 +170,14 @@
 
         // Carica la lingua all'avvio della pagina
         document.addEventListener("DOMContentLoaded", () => {
-            const savedLang = localStorage.getItem('preferredLanguage') || 'it';
+            // Lingua: ?lang=en (usato dall'indirizzo /en) ha la precedenza sulla scelta salvata
+            let savedLang = 'it';
+            try { savedLang = localStorage.getItem('preferredLanguage') || 'it'; } catch (e) {}
+            const urlLang = new URLSearchParams(location.search).get('lang');
+            if (urlLang === 'en' || urlLang === 'it') {
+                savedLang = urlLang;
+                history.replaceState(null, '', location.pathname + location.hash);
+            }
             setLanguage(savedLang);
         });
 
