@@ -192,3 +192,249 @@
         border-color: #1e293b;
     }
 }
+
+/* Comparsa morbida delle sezioni (solo se il JavaScript è attivo) */
+.js-reveal .rv {
+    opacity: 0;
+    transform: translateY(24px);
+}
+.js-reveal .rv.rv-in {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+    .js-reveal .rv {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Fascia "hai un progetto in mente?" */
+.cta-band {
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    background: linear-gradient(120deg, #1d4ed8, #2563eb 55%, #3b82f6);
+}
+.cta-band::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.18) 1.5px, transparent 1.6px);
+    background-size: 22px 22px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 70%);
+    mask-image: linear-gradient(90deg, transparent, #000 70%);
+    pointer-events: none;
+}
+.cta-band .cta-in {
+    position: relative;
+    z-index: 1;
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 40px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+.cta-band .cta-k {
+    margin: 0 0 6px;
+    font: 600 14px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: #bfdbfe;
+}
+.cta-band .cta-t {
+    margin: 0;
+    max-width: 620px;
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+.cta-band .cta-b {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    border-radius: 10px;
+    background: #fff;
+    color: #1d4ed8;
+    font-weight: 700;
+    box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.cta-band .cta-b:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.45);
+}
+@media (max-width: 767px) {
+    .cta-band .cta-in {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 32px 16px;
+    }
+    .cta-band .cta-t {
+        font-size: 22px;
+    }
+    .cta-band .cta-b {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Competenze: striscia colorata, conteggio, tecnologie in griglia */
+.sk-card {
+    position: relative;
+    overflow: hidden;
+    background: #fff !important;
+    border-color: #e2e8f0 !important;
+    box-shadow: 0 18px 40px -28px rgba(15, 23, 42, 0.35);
+}
+.dark .sk-card {
+    background: #0f172a !important;
+    border-color: #1e293b !important;
+}
+.sk-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 5px;
+    background: #3b82f6;
+}
+.sk-card:nth-child(1)::before { background: #14b8a6; }
+.sk-card:nth-child(2)::before { background: #f97316; }
+.sk-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+.sk-head > div:first-child {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 14px !important;
+    flex: none;
+}
+.sk-count {
+    display: block;
+    margin-top: 2px;
+    font: 600 12px ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: #64748b;
+}
+.dark .sk-count {
+    color: #94a3b8;
+}
+.sk-chips {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px !important;
+}
+.sk-chips > span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px !important;
+    border-radius: 10px !important;
+    font-size: 14px;
+    background: #f8fafc !important;
+    box-shadow: none !important;
+}
+.dark .sk-chips > span {
+    background: #1e293b !important;
+}
+.sk-chips > span i {
+    font-size: 16px;
+}
+
+/* Prima schermata: griglia di puntini dietro la foto */
+#about {
+    position: relative;
+    isolation: isolate;
+}
+#about::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 40px;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    background-image: radial-gradient(rgba(37, 99, 235, 0.32) 1.8px, transparent 1.9px);
+    background-size: 24px 24px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 75% at 72% 45%, #000 20%, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 75% at 72% 45%, #000 20%, transparent 75%);
+    pointer-events: none;
+}
+.dark #about::before {
+    background-image: radial-gradient(rgba(96, 165, 250, 0.3) 1.8px, transparent 1.9px);
+}
+@media (max-width: 767px) {
+    #about::before {
+        top: 60px;
+        -webkit-mask-image: radial-gradient(ellipse 90% 45% at 80% 30%, #000 20%, transparent 75%);
+        mask-image: radial-gradient(ellipse 90% 45% at 80% 30%, #000 20%, transparent 75%);
+    }
+}
+
+/* Easter egg: M4R7 sbuca dal bordo del footer */
+.site-footer {
+    position: relative;
+    overflow: hidden;
+}
+@media (max-width: 767px) {
+    .site-footer {
+        padding-bottom: 4.5rem;
+    }
+}
+.m4-egg {
+    position: absolute;
+    left: 24px;
+    bottom: 0;
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    text-decoration: none;
+}
+.m4-egg img {
+    width: 44px;
+    height: auto;
+    image-rendering: pixelated;
+    transform: translateY(62%);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.m4-egg-bubble {
+    order: 2;
+    margin-bottom: 30px;
+    padding: 6px 10px;
+    border: 2px solid #475569;
+    border-radius: 6px;
+    background: #0f172a;
+    color: #e2e8f0;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+}
+.m4-egg:hover img,
+.m4-egg:focus-visible img {
+    transform: translateY(0);
+}
+.m4-egg:hover .m4-egg-bubble,
+.m4-egg:focus-visible .m4-egg-bubble {
+    opacity: 1;
+    transform: none;
+}
+.m4-egg:focus-visible {
+    outline: 2px solid #60a5fa;
+    outline-offset: 2px;
+}
+@media (max-width: 767px) {
+    .m4-egg-bubble {
+        margin-bottom: 14px;
+    }
+}
